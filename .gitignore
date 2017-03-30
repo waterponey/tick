@@ -19,6 +19,8 @@ build/
 
 # Sphinx generated files
 DOC/_build/
+doc_new/_build
+doc_new/modules/generated
 
 # Latex generated
 DOC/tex/**/*.pdf
