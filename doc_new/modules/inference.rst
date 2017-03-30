@@ -3,7 +3,7 @@
 .. _inference:
 
 ====================================================
-:mod:`mlpp.inference`: user-friendly inference tools
+:mod:`tick.inference`: user-friendly inference tools
 ====================================================
 
 These classes are called learners. They are meant to be very user friendly

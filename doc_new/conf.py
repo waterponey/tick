@@ -209,7 +209,7 @@ html_show_copyright = True
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'mlppdoc'
+htmlhelp_basename = 'tickdoc'
 
 
 
@@ -230,7 +230,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
-# latex_documents = [('index', 'mlpp.tex', 'mlpp', '', 'manual'), ]
+# latex_documents = [('index', 'tick.tex', 'tick', '', 'manual'), ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.

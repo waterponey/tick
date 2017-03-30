@@ -1,6 +1,6 @@
 
 import matplotlib.pyplot as plt
-from mlpp.simulation import weights_sparse_exp, weights_sparse_gauss
+from tick.simulation import weights_sparse_exp, weights_sparse_gauss
 
 n_features = 100
 weights1 = weights_sparse_exp(n_features, nnz=20)

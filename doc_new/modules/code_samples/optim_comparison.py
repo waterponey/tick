@@ -1,9 +1,9 @@
 import numpy as np
-from mlpp.simulation import SimuLogReg, weights_sparse_gauss
-from mlpp.optim.solver import Ista, Fista, SGD, SVRG, SDCA
-from mlpp.optim.model import ModelLogReg
-from mlpp.optim.prox import ProxElasticNet, ProxL1
-from mlpp.plot import plot_history
+from tick.simulation import SimuLogReg, weights_sparse_gauss
+from tick.optim.solver import Ista, Fista, SGD, SVRG, SDCA
+from tick.optim.model import ModelLogReg
+from tick.optim.prox import ProxElasticNet, ProxL1
+from tick.plot import plot_history
 
 n_samples, n_features, = 5000, 50
 weights0 = weights_sparse_gauss(n_features, nnz=10)

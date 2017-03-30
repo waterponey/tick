@@ -12,20 +12,20 @@ since direct class and function API is not enough for understanding their uses.
 
 .. _api-base:
 
-:mod:`mlpp.base`: Base classes and tools
+:mod:`tick.base`: Base classes and tools
 ========================================
 
 This module contains all base classes and functions of tick.
 The objects in this module are useful for development only, and are not
 intended for end-users.
 
-.. automodule:: mlpp.base
+.. automodule:: tick.base
    :no-members:
    :no-inherited-members:
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -36,7 +36,7 @@ Classes
 
 Functions
 ---------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -48,20 +48,20 @@ Functions
 
 .. _api-inference:
 
-:mod:`mlpp.inference`: Inference classes
+:mod:`tick.inference`: Inference classes
 ========================================
 
 This module contains all classes giving inference tools, intended for end-users.
 
 **User guide:** See the :ref:`inference` section for further details.
 
-.. automodule:: mlpp.inference
+.. automodule:: tick.inference
    :no-members:
    :no-inherited-members:
 
 Base classes
 ------------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -72,7 +72,7 @@ Base classes
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -85,7 +85,7 @@ Classes
 
 .. _api-optim-model:
 
-:mod:`mlpp.optim.model`: Models classes
+:mod:`tick.optim.model`: Models classes
 =======================================
 
 This module contains classes giving computational informations about the models available
@@ -93,13 +93,13 @@ in tick.
 
 **User guide:** See the :ref:`optim-model` section for further details.
 
-.. automodule:: mlpp.optim.model
+.. automodule:: tick.optim.model
    :no-members:
    :no-inherited-members:
 
 Base classes
 ------------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -116,7 +116,7 @@ Base classes
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -132,7 +132,7 @@ Classes
    optim.model.ModelHawkesFixedSumExpKernLeastSq
 
 
-:mod:`mlpp.optim.prox`: Proximal operators classes
+:mod:`tick.optim.prox`: Proximal operators classes
 ==================================================
 
 This module contains all the proximal operators available in tick.
@@ -141,7 +141,7 @@ This module contains all the proximal operators available in tick.
 
 Base classes
 ------------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -151,7 +151,7 @@ Base classes
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -171,7 +171,7 @@ Classes
 
 .. _api-optim-solver:
 
-:mod:`mlpp.optim.solver`: Solver classes
+:mod:`tick.optim.solver`: Solver classes
 ========================================
 
 This module contains all the solvers available in tick.
@@ -180,7 +180,7 @@ This module contains all the solvers available in tick.
 
 Base classes
 ------------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -195,7 +195,7 @@ Base classes
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -213,7 +213,7 @@ Classes
 
 .. _api-plot:
 
-:mod:`mlpp.plot`: Plotting utilities
+:mod:`tick.plot`: Plotting utilities
 ====================================
 
 This module contains some utilities functions for plotting
@@ -222,7 +222,7 @@ This module contains some utilities functions for plotting
 
 Functions
 ---------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -235,7 +235,7 @@ Functions
 
 .. _api-preprocessing:
 
-:mod:`mlpp.preprocessing`: Preprocessing utilities
+:mod:`tick.preprocessing`: Preprocessing utilities
 ==================================================
 
 This module contains some utilities functions for preprocessing of data.
@@ -244,7 +244,7 @@ This module contains some utilities functions for preprocessing of data.
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -255,7 +255,7 @@ Classes
 
 .. _api-simulation:
 
-:mod:`mlpp.simulation`: Simulation classes and fuctions
+:mod:`tick.simulation`: Simulation classes and fuctions
 =======================================================
 
 This module contains all simulation tools available in tick.
@@ -264,7 +264,7 @@ This module contains all simulation tools available in tick.
 
 Base classes
 ------------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -276,7 +276,7 @@ Base classes
 
 Classes
 -------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -298,7 +298,7 @@ Classes
 
 Functions
 ---------
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/

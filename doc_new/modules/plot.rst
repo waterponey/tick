@@ -3,6 +3,6 @@
 .. _plot:
 
 ====================================
-:mod:`mlpp.plot`: plotting utilities
+:mod:`tick.plot`: plotting utilities
 ====================================
 

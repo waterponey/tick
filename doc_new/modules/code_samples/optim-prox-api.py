@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mlpp.optim.prox import ProxL1
+from tick.optim.prox import ProxL1
 
 plt.figure(figsize=(20, 4))
 

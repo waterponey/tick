@@ -18,14 +18,14 @@ Main highlights
 
 Base class
 ----------
-Most of our objects inherit from `mlpp.base.Base` class. If this class does
+Most of our objects inherit from `tick.base.Base` class. If this class does
 not have many public methods, it allow us to benefit from several behaviors.
 These behaviors are deducted from a private dictionary set by developer :
 `_attrinfos`.
 
 .. testsetup:: *
 
-    from mlpp.base import Base
+    from tick.base import Base
 
 Read-only attributes
 ^^^^^^^^^^^^^^^^^^^^
@@ -170,7 +170,7 @@ In order to enable the linking we must specify:
 
 .. testsetup:: [cpp_setter]
 
-    from mlpp.base.utils.build.utils import A0 as _A
+    from tick.base.utils.build.utils import A0 as _A
 
 .. testcode:: [cpp_setter]
 
@@ -200,7 +200,7 @@ value of the C++ int.
 
 .. note::
     If the reader wants to run this example, he might find the corresponding
-    class by importing it `from mlpp.base.utils.build.utils import A0 as _A`.
+    class by importing it `from tick.base.utils.build.utils import A0 as _A`.
 
 How does this work?
 ^^^^^^^^^^^^^^^^^^^
@@ -296,7 +296,7 @@ Our .cpp implementation looks like:
             out[i] = coeffs[i] / (1 + step * strength);
     }
 
-In mlpp these files are stored in /src folder
+In tick these files are stored in /src folder
 
 Link it with Python
 ^^^^^^^^^^^^^^^^^^^
@@ -306,7 +306,7 @@ Create SWIG file
 
 Now that our proximal operator is defined in C++ we need to make it available
 in Python. We do it thanks to `SWIG <http://www.swig.org/Doc3.0/>`_.
-Hence we have to create a .i file. In mlpp we store them in /swig folder.
+Hence we have to create a .i file. In tick we store them in /swig folder.
 
 This .i file looks a lot like our .h file.
 
@@ -344,7 +344,7 @@ with a double, and call three methods, `value`, `call` and `set_strength`.
     `%include \<std_shared_ptr.i\>`.
 
 .. note::
-  In mlpp our ProxL2Sq class is not really identical as it inherits
+  In tick our ProxL2Sq class is not really identical as it inherits
   from Prox abstract class. Hence some of this logic might not be present in
   the exact same file. Everything that concerns prox, is imported through
   `prox_module.i`.
@@ -374,7 +374,7 @@ created at the following place.
                     "prox_l1.h",
                     "prox_l2sq.h"],
         "swig_files": ["prox_module.i", ],
-        "module_dir": "./mlpp/optim/prox/",
+        "module_dir": "./tick/optim/prox/",
         "extension_name": "prox",
         "include_modules": base_modules
     }
@@ -390,7 +390,7 @@ Use class in Python
 Now that our C++ class is linked with Python we can import it and use its
 methods that we have declared in the .i file.
 
-In mlpp we always wrap C++ classes in a Python class that will call C++
+In tick we always wrap C++ classes in a Python class that will call C++
 object methods when it needs to perform the computations. Hence here is the
 Python class we might create:
 

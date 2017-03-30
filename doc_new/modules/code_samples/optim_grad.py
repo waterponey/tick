@@ -2,8 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from mlpp.simulation import SimuLogReg, weights_sparse_gauss
-from mlpp.optim.model import ModelLogReg
+from tick.simulation import SimuLogReg, weights_sparse_gauss
+from tick.optim.model import ModelLogReg
 
 n_samples, n_features = 2000, 50
 weights0 = weights_sparse_gauss(n_weights=n_features, nnz=10)

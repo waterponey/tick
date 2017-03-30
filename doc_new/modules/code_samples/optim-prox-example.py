@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mlpp.optim.prox import ProxL1, ProxElasticNet, ProxL2Sq, \
+from tick.optim.prox import ProxL1, ProxElasticNet, ProxL2Sq, \
     ProxPositive, ProxSortedL1, ProxTV, ProxZero
 
 x = np.random.randn(50)

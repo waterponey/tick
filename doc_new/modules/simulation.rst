@@ -3,7 +3,7 @@
 .. _simulation:
 
 ==========================================
-:mod:`mlpp.simulation`: simulation toolbox
+:mod:`tick.simulation`: simulation toolbox
 ==========================================
 
 tick provides several classes to simulate datasets.
@@ -42,7 +42,7 @@ Hawkes processes and time functions for the simulation of Poisson processes.
 
 Here are functions for the simulation of model weights.
 
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -63,7 +63,7 @@ Here are functions for the simulation of a features matrix: each simulated
 vector or features is distributed as a centered Gaussian vector with
 a particular covariance matrix (uniform symmetrized or toeplitz).
 
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -88,7 +88,7 @@ They can be used together with the class ????
 
     Insert a sample code here
 
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -128,10 +128,10 @@ where :math:`\mathbb P` depends on the considered model.
 =====================================  =============================================  ============================
 Model                                  Distribution :math:`\mathbb P(Y=y | X=x)`      Class
 =====================================  =============================================  ============================
-Linear regression                      :math:`\text{Normal}(w^\top x + b, \sigma^2)`  :class:`mlpp.simulation.SimuLinReg`
-Logistic regression                    :math:`\text{Binomial}(w^\top x + b)`          :class:`mlpp.simulation.SimuLogReg`
-Poisson regression (identity link)     :math:`\text{Poisson}(w^\top x + b)`           :class:`mlpp.simulation.SimuPoisReg` with ``link="identity"``
-Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})`       :class:`mlpp.simulation.SimuPoisReg` with ``link="exponential"``
+Linear regression                      :math:`\text{Normal}(w^\top x + b, \sigma^2)`  :class:`tick.simulation.SimuLinReg`
+Logistic regression                    :math:`\text{Binomial}(w^\top x + b)`          :class:`tick.simulation.SimuLogReg`
+Poisson regression (identity link)     :math:`\text{Poisson}(w^\top x + b)`           :class:`tick.simulation.SimuPoisReg` with ``link="identity"``
+Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})`       :class:`tick.simulation.SimuPoisReg` with ``link="exponential"``
 =====================================  =============================================  ============================
 
 **Example**
@@ -167,7 +167,7 @@ For now, the following class is available
 ===================================  ===================================
 Model                                Class
 ===================================  ===================================
-Cox regression with right-censoring  :class:`mlpp.simulation.SimuCoxReg`
+Cox regression with right-censoring  :class:`tick.simulation.SimuCoxReg`
 ===================================  ===================================
 
 **Example**
@@ -190,7 +190,7 @@ Poisson processes and Hawkes processes.
 
 The following classes are available for
 
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/
@@ -213,7 +213,7 @@ The following classes are available for
     COMPLETER ET BLABLATER
 
 
-.. currentmodule:: mlpp
+.. currentmodule:: tick
 
 .. autosummary::
    :toctree: generated/

@@ -3,6 +3,6 @@
 .. _preprocessing:
 
 ==================================================
-:mod:`mlpp.preprocessing`: preprocessing utilities
+:mod:`tick.preprocessing`: preprocessing utilities
 ==================================================
 

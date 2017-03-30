@@ -2,7 +2,7 @@
 .. _optim:
 
 =======================================
-:mod:`mlpp.optim`: optimization toolbox
+:mod:`tick.optim`: optimization toolbox
 =======================================
 
 This is the core module of ``tick`` : an optimization toolbox, that allows
@@ -24,9 +24,9 @@ Contents
 ========================  ====================================  ============
 Module API                Documentation        Description
 ========================  ====================================  ============
-:mod:`mlpp.optim.model`   :ref:`Model classes <optim-model>`    Gives information about :math:`f`: value, gradient, hessian
-:mod:`mlpp.optim.prox`    :ref:`Prox classes <optim-prox>`      Gives information about :math:`g`: value and proximal operator
-:mod:`mlpp.optim.solver`  :ref:`Solver classes <optim-solver>`  Given a model and a prox, minimizes :math:`f + g`
+:mod:`tick.optim.model`   :ref:`Model classes <optim-model>`    Gives information about :math:`f`: value, gradient, hessian
+:mod:`tick.optim.prox`    :ref:`Prox classes <optim-prox>`      Gives information about :math:`g`: value and proximal operator
+:mod:`tick.optim.solver`  :ref:`Solver classes <optim-solver>`  Given a model and a prox, minimizes :math:`f + g`
 ========================  ====================================  ============
 
 
@@ -53,7 +53,7 @@ Note that, we specify a ``range=(0, n_features)`` so that the intercept is not p
 
 .. _optim-model:
 
-1. :mod:`mlpp.optim.model`: model classes
+1. :mod:`tick.optim.model`: model classes
 =========================================
 
 In ``tick`` a ``model`` class gives information about a statistical model.
@@ -70,7 +70,7 @@ some data, see :ref:`linear model simulation <simulation-linear-model>` to have 
 .. testcode:: [optim-model-glm]
 
     import numpy as np
-    from mlpp.simulation import SimuLogReg, weights_sparse_gauss
+    from tick.simulation import SimuLogReg, weights_sparse_gauss
 
     n_samples, n_features = 2000, 50
     weights0 = weights_sparse_gauss(n_weights=n_features, nnz=10)
@@ -83,7 +83,7 @@ Now, we can create the model object for logistic regression
 
 .. testcode:: [optim-model-glm]
 
-    from mlpp.optim.model import ModelLogReg
+    from tick.optim.model import ModelLogReg
 
     model = ModelLogReg(fit_intercept=True).fit(X, y)
     print(model)
@@ -191,10 +191,10 @@ different losses implemented for now in tick and its associated class.
 ========================================  ===========================================  ==========================================
 Model                                      Loss formula                                Class
 ========================================  ===========================================  ==========================================
-Linear regression                         :math:`\ell(y, y') = \frac 12 (y - y')^2`    :class:`ModelLinReg <mlpp.optim.model.ModelLinReg>`
-Logistic regression                       :math:`\ell(y, y') = \log(1 + \exp(-y y'))`  :class:`ModelLogReg <mlpp.optim.model.ModelLogReg>`
-Poisson regression with exponential link  :math:`\ell(y, y') = y' - y \log(y')`        :class:`ModelPoisReg <mlpp.optim.model.ModelPoisReg>` with ``link="exponential"``
-Poisson regression with identity link     :math:`\ell(y, y') = e^{y'} - y y'`          :class:`ModelPoisReg <mlpp.optim.model.ModelPoisReg>` with ``link="identity"``
+Linear regression                         :math:`\ell(y, y') = \frac 12 (y - y')^2`    :class:`ModelLinReg <tick.optim.model.ModelLinReg>`
+Logistic regression                       :math:`\ell(y, y') = \log(1 + \exp(-y y'))`  :class:`ModelLogReg <tick.optim.model.ModelLogReg>`
+Poisson regression with exponential link  :math:`\ell(y, y') = y' - y \log(y')`        :class:`ModelPoisReg <tick.optim.model.ModelPoisReg>` with ``link="exponential"``
+Poisson regression with identity link     :math:`\ell(y, y') = e^{y'} - y y'`          :class:`ModelPoisReg <tick.optim.model.ModelPoisReg>` with ``link="identity"``
 ========================================  ===========================================  ==========================================
 
 
@@ -220,7 +220,7 @@ using this model.
 =================================  =========================================  ==========================================
 Model                              Loss formula                               Class
 =================================  =========================================  ==========================================
-Linear regression with intercepts  :math:`\ell(y, y') = \frac 12 (y - y')^2`  :class:`ModelLinRegWithIntercepts <mlpp.optim.model.ModelLinRegWithIntercepts>`
+Linear regression with intercepts  :math:`\ell(y, y') = \frac 12 (y - y')^2`  :class:`ModelLinRegWithIntercepts <tick.optim.model.ModelLinRegWithIntercepts>`
 =================================  =========================================  ==========================================
 
 
@@ -236,7 +236,7 @@ Linear regression with intercepts  :math:`\ell(y, y') = \frac 12 (y - y')^2`  :c
 =================================  ==============================
 Model                              Class
 =================================  ==============================
-Cox regression partial likelihood  :class:`ModelCoxRegPartialLik <mlpp.optim.model.ModelCoxRegPartialLik>`
+Cox regression partial likelihood  :class:`ModelCoxRegPartialLik <tick.optim.model.ModelCoxRegPartialLik>`
 =================================  ==============================
 
 
@@ -252,15 +252,15 @@ Cox regression partial likelihood  :class:`ModelCoxRegPartialLik <mlpp.optim.mod
 ==============================================================  ===============================
 Model                                                           Class
 ==============================================================  ===============================
-Least-squares for Hawkes model with exponential kernels         :class:`ModelHawkesFixedExpKernLeastSq <mlpp.optim.model.ModelHawkesFixedExpKernLeastSq>`
-Log-likelihood for Hawkes model with exponential kernels        :class:`ModelHawkesFixedExpKernLogLik <mlpp.optim.model.ModelHawkesFixedExpKernLogLik>`
-Least-squares for Hawkes model with sum of exponential kernels  :class:`ModelHawkesFixedSumExpKernLeastSq <mlpp.optim.model.ModelHawkesFixedSumExpKernLeastSq>`
+Least-squares for Hawkes model with exponential kernels         :class:`ModelHawkesFixedExpKernLeastSq <tick.optim.model.ModelHawkesFixedExpKernLeastSq>`
+Log-likelihood for Hawkes model with exponential kernels        :class:`ModelHawkesFixedExpKernLogLik <tick.optim.model.ModelHawkesFixedExpKernLogLik>`
+Least-squares for Hawkes model with sum of exponential kernels  :class:`ModelHawkesFixedSumExpKernLeastSq <tick.optim.model.ModelHawkesFixedSumExpKernLeastSq>`
 ==============================================================  ===============================
 
 
 .. _optim-prox:
 
-2. :mod:`mlpp.optim.prox`: proximal operators
+2. :mod:`tick.optim.prox`: proximal operators
 =============================================
 
 This module provides several proximal operators for the regularization of the weights
@@ -286,14 +286,14 @@ the regularization only to a subset of entries of :math:`w`.
 2.1 The ``prox`` class API
 --------------------------
 
-Let us describe the ``prox`` API with the :class:`ProxL1<mlpp.optim.prox.ProxL1>`
+Let us describe the ``prox`` API with the :class:`ProxL1<tick.optim.prox.ProxL1>`
 class, that provides the proximal operator of the function :math:`g(w) = s \|w\|_1 = s \sum_{j=1}^d |w_j|`.
 
 
 .. testcode:: [optim-model-prox]
 
     import numpy as np
-    from mlpp.optim.prox import ProxL1
+    from tick.optim.prox import ProxL1
 
     prox = ProxL1(strength=1e-2)
     print(prox)
@@ -370,20 +370,20 @@ The list of available operators in ``tick`` given in the next table.
 =======================  ========================================================================================  ==============
 Penalization             Function                                                                                  Class
 =======================  ========================================================================================  ==============
-Identity                 :math:`g(w) = 0`                                                                          :class:`ProxZero <mlpp.optim.prox.ProxZero>`
-Non-negative constraint  :math:`g(w) = s \delta_C(w)` where :math:`C=` set of vectors with non-negative entries    :class:`ProxPositive <mlpp.optim.prox.ProxPositive>`
-L1 norm                  :math:`g(w) = s \sum_{j=1}^d |w_j|`                                                       :class:`ProxL1 <mlpp.optim.prox.ProxL1>`
-L1 norm with weights     :math:`g(w) = s \sum_{j=1}^d c_j |w_j|`                                                   :class:`ProxL1w <mlpp.optim.prox.ProxL1w>`
-Ridge                    :math:`g(w) = s \sum_{j=1}^d \frac{w_j^2}{2}`                                             :class:`ProxL2Sq <mlpp.optim.prox.ProxL2Sq>`
-Elastic-net              :math:`g(w) = s \Big(\sum_{j=1}^{d} \alpha |w_j| + (1 - \alpha) \frac{w_j^2}{2} \Big)`    :class:`ProxElasticNet <mlpp.optim.prox.ProxElasticNet>`
-Total-variation          :math:`g(w) = s \sum_{j=2}^d |w_j - w_{j-1}|`                                             :class:`ProxTV <mlpp.optim.prox.ProxTV>`
-Nuclear norm             :math:`g(w) = s \sum_{j=1}^{q} \sigma_j(w)`                                               :class:`ProxNuclear <mlpp.optim.prox.ProxNuclear>`
-Sorted L1                :math:`g(w) = s \sum_{j=1}^{d} c_j |w_{(j)}|` where :math:`|w_{(j)}|` is decreasing       :class:`ProxSortedL1 <mlpp.optim.prox.ProxSortedL1>`
+Identity                 :math:`g(w) = 0`                                                                          :class:`ProxZero <tick.optim.prox.ProxZero>`
+Non-negative constraint  :math:`g(w) = s \delta_C(w)` where :math:`C=` set of vectors with non-negative entries    :class:`ProxPositive <tick.optim.prox.ProxPositive>`
+L1 norm                  :math:`g(w) = s \sum_{j=1}^d |w_j|`                                                       :class:`ProxL1 <tick.optim.prox.ProxL1>`
+L1 norm with weights     :math:`g(w) = s \sum_{j=1}^d c_j |w_j|`                                                   :class:`ProxL1w <tick.optim.prox.ProxL1w>`
+Ridge                    :math:`g(w) = s \sum_{j=1}^d \frac{w_j^2}{2}`                                             :class:`ProxL2Sq <tick.optim.prox.ProxL2Sq>`
+Elastic-net              :math:`g(w) = s \Big(\sum_{j=1}^{d} \alpha |w_j| + (1 - \alpha) \frac{w_j^2}{2} \Big)`    :class:`ProxElasticNet <tick.optim.prox.ProxElasticNet>`
+Total-variation          :math:`g(w) = s \sum_{j=2}^d |w_j - w_{j-1}|`                                             :class:`ProxTV <tick.optim.prox.ProxTV>`
+Nuclear norm             :math:`g(w) = s \sum_{j=1}^{q} \sigma_j(w)`                                               :class:`ProxNuclear <tick.optim.prox.ProxNuclear>`
+Sorted L1                :math:`g(w) = s \sum_{j=1}^{d} c_j |w_{(j)}|` where :math:`|w_{(j)}|` is decreasing       :class:`ProxSortedL1 <tick.optim.prox.ProxSortedL1>`
 =======================  ========================================================================================  ==============
 
-Another ``prox`` class is the :class:`ProxMulti <mlpp.optim.prox.ProxMulti>` that allows
+Another ``prox`` class is the :class:`ProxMulti <tick.optim.prox.ProxMulti>` that allows
 to combine any proximal operators together.
-It simply applies sequentially each operator passed to :class:`ProxMulti <mlpp.optim.prox.ProxMulti>`,
+It simply applies sequentially each operator passed to :class:`ProxMulti <tick.optim.prox.ProxMulti>`,
 one after the other. Here is an example of combination of a total-variation penalization and L1 penalization
 applied to different parts of a vector.
 
@@ -392,7 +392,7 @@ applied to different parts of a vector.
 
     import numpy as np
     import matplotlib.pyplot as plt
-    from mlpp.optim.prox import ProxL1, ProxTV, ProxMulti
+    from tick.optim.prox import ProxL1, ProxTV, ProxMulti
 
     s = 0.4
 
@@ -431,7 +431,7 @@ Here is an illustration of the effect of these proximal operators on an example.
 
 .. _optim-solver:
 
-3. :mod:`mlpp.optim.solver`: solvers
+3. :mod:`tick.optim.solver`: solvers
 ====================================
 
 This module contains all the solvers available in ``tick``.
@@ -451,10 +451,10 @@ eventually a step-size can be given. Here is an example
 .. testcode::
 
     import numpy as np
-    from mlpp.simulation import SimuLogReg, weights_sparse_gauss
-    from mlpp.optim.solver import SVRG
-    from mlpp.optim.model import ModelLogReg
-    from mlpp.optim.prox import ProxElasticNet
+    from tick.simulation import SimuLogReg, weights_sparse_gauss
+    from tick.optim.solver import SVRG
+    from tick.optim.model import ModelLogReg
+    from tick.optim.prox import ProxElasticNet
 
     n_samples, n_features = 5000, 10
     weights0 = weights_sparse_gauss(n_weights=n_features, nnz=3)
@@ -518,13 +518,13 @@ Here is the list of the solvers available in ``tick``.
 =======================================================  ========================================
 Solver                                                   Class
 =======================================================  ========================================
-Proximal gradient descent                                :class:`Ista <mlpp.optim.solver.Ista>`
-Accelerated proximal gradient descent                    :class:`Fista <mlpp.optim.solver.Fista>`
-Broyden, Fletcher, Goldfarb, and Shannon (quasi-newton)  :class:`BFGS <mlpp.optim.solver.BFGS>`
-Self-Concordant Proximal Gradient Descent                :class:`SCPG <mlpp.optim.solver.SCPG>`
-Stochastic Gradient Descent                              :class:`SGD <mlpp.optim.solver.SGD>`
-Stochastic Variance Reduced Descent                      :class:`SVRG <mlpp.optim.solver.SVRG>`
-Stochastic Dual Coordinate Ascent                        :class:`SDCA <mlpp.optim.solver.SDCA>`
+Proximal gradient descent                                :class:`Ista <tick.optim.solver.Ista>`
+Accelerated proximal gradient descent                    :class:`Fista <tick.optim.solver.Fista>`
+Broyden, Fletcher, Goldfarb, and Shannon (quasi-newton)  :class:`BFGS <tick.optim.solver.BFGS>`
+Self-Concordant Proximal Gradient Descent                :class:`SCPG <tick.optim.solver.SCPG>`
+Stochastic Gradient Descent                              :class:`SGD <tick.optim.solver.SGD>`
+Stochastic Variance Reduced Descent                      :class:`SVRG <tick.optim.solver.SVRG>`
+Stochastic Dual Coordinate Ascent                        :class:`SDCA <tick.optim.solver.SDCA>`
 =======================================================  ========================================
 
 

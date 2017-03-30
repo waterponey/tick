@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from mlpp.simulation import SimuCoxReg
+from tick.simulation import SimuCoxReg
 
 n_samples = 150
 weights = np.array([0.3, 1.2])
