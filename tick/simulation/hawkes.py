@@ -15,15 +15,15 @@ class SimuHawkes(SimuPointProcess):
     They are defined by the intensity:
     
     .. math::
-        \forall i \in [1 \dots D], \quad
-        \lambda_i(t) = \mu_i + \sum_{j=1}^D \int \phi_{ij}(t - s) dN_j(s)
+        \\forall i \\in [1 \\dots D], \\quad
+        \\lambda_i(t) = \\mu_i + \\sum_{j=1}^D \\int \\phi_{ij}(t - s) dN_j(s)
 
     where
     
-      - :math:`D` is the number of nodes
-      - :math:`\mu_i` are the baseline intensities
-      - :math:`\phi_{ij}` are the kernels
-      - :math:`dN_j` are the processes differentiates
+    * :math:`D` is the number of nodes
+    * :math:`\mu_i` are the baseline intensities
+    * :math:`\phi_{ij}` are the kernels
+    * :math:`dN_j` are the processes differentiates
 
     Parameters
     ----------

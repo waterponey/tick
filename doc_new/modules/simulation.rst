@@ -194,7 +194,7 @@ The following classes are available for
 
 .. autosummary::
    :toctree: generated/
-   :template: function.rst
+   :template: class.rst
 
    simulation.SimuPoissonProcess
    simulation.SimuInhomogeneousPoisson
@@ -217,7 +217,7 @@ The following classes are available for
 
 .. autosummary::
    :toctree: generated/
-   :template: function.rst
+   :template: class.rst
 
    simulation.SimuHawkes
    simulation.SimuHawkesExpKernels
