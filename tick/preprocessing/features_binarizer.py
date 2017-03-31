@@ -156,6 +156,7 @@ class FeaturesBinarizer(Base, BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         """Apply the binarization to the given features matrix.
+
         Parameters
         ----------
         X : `pd.DataFrame` or `np.ndarray`, shape=(n_samples, n_features)
@@ -189,6 +190,7 @@ class FeaturesBinarizer(Base, BaseEstimator, TransformerMixin):
 
     def fit_transform(self, X, y=None, **kwargs):
         """Fit and apply the binarization using the features matrix.
+
         Parameters
         ----------
         X : `pd.DataFrame` or `np.ndarray`, shape=(n_samples, n_features)

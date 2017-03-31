@@ -78,9 +78,10 @@ Classes
    :toctree: generated/
    :template: class.rst
 
-   inference.LearnerLogReg
-   inference.LearnerCoxReg
-   inference.LearnerHawkesExpKernFixedDecay
+   inference.LogisticRegression
+   inference.CoxRegression
+   inference.HawkesExpKern
+   inference.HawkesSumExpKern
 
 
 .. _api-optim-model:
@@ -190,7 +191,6 @@ Base classes
    optim.solver.base.SolverFirstOrder
    optim.solver.base.SolverSto
    optim.solver.base.SolverFirstOrderSto
-   optim.solver.CompositeProx
    optim.history.History
 
 Classes
@@ -201,8 +201,8 @@ Classes
    :toctree: generated/
    :template: class.rst
 
-   optim.solver.Ista
-   optim.solver.Fista
+   optim.solver.GD
+   optim.solver.AGD
    optim.solver.BFGS
    optim.solver.GFB
    optim.solver.SCPG

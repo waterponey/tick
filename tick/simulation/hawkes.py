@@ -2,7 +2,7 @@ import warnings
 from itertools import product
 
 import numpy as np
-from tick.simulation.base.simu_point_process import SimuPointProcess
+from tick.simulation.base import SimuPointProcess
 from numpy.linalg import eig, inv
 
 from .build.simulation import Hawkes as _Hawkes

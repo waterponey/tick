@@ -518,8 +518,8 @@ Here is the list of the solvers available in ``tick``.
 =======================================================  ========================================
 Solver                                                   Class
 =======================================================  ========================================
-Proximal gradient descent                                :class:`Ista <tick.optim.solver.Ista>`
-Accelerated proximal gradient descent                    :class:`Fista <tick.optim.solver.Fista>`
+Proximal gradient descent                                :class:`GD <tick.optim.solver.GD>`
+Accelerated proximal gradient descent                    :class:`AGD <tick.optim.solver.AGD>`
 Broyden, Fletcher, Goldfarb, and Shannon (quasi-newton)  :class:`BFGS <tick.optim.solver.BFGS>`
 Self-Concordant Proximal Gradient Descent                :class:`SCPG <tick.optim.solver.SCPG>`
 Stochastic Gradient Descent                              :class:`SGD <tick.optim.solver.SGD>`
