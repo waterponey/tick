@@ -10,10 +10,6 @@
 {%- block navbartoc %}
 {% endblock %}
 
-{# Include our new CSS file into existing ones. #}
-{% set css_files = css_files + ['_static/lightning.css']%}
-{% set css_files = css_files + ['_static/bootstrap.min.css']%}
-
 {%- block content %}
 {{ navBar() }}
 <div class="container content-container">

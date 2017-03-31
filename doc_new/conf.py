@@ -273,14 +273,6 @@ man_pages = [
 
 # -- Options for Texinfo output -----------------------------------------------
 
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-# texinfo_documents = [
-#     ('index', 'lightning', u'lightning Documentation', u'Mathieu Blondel',
-#      'lightning', 'One line description of project.', 'Miscellaneous'),
-# ]
-
 # Documents to append as an appendix to all manuals.
 #texinfo_appendices = []
 
