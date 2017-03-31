@@ -211,7 +211,10 @@ html_show_copyright = True
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'tickdoc'
 
-
+# Add this context to all produce html files
+html_context = {
+    'css_files': ['_static/css/custom.css'],
+}
 
 
 # -- Options for LaTeX output -------------------------------------------------
