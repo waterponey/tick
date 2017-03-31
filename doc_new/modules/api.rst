@@ -9,43 +9,6 @@ This is the full class and function references of tick. Please look at
 the modules documentation cited below for more examples and use cases,
 since direct class and function API is not enough for understanding their uses.
 
-
-.. _api-base:
-
-:mod:`tick.base`: Base classes and tools
-========================================
-
-This module contains all base classes and functions of tick.
-The objects in this module are useful for development only, and are not
-intended for end-users.
-
-.. automodule:: tick.base
-   :no-members:
-   :no-inherited-members:
-
-Classes
--------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   base.Base
-   base.TimeFunction
-
-Functions
----------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: function.rst
-
-   base.actual_kwargs
-
-
-
 .. _api-inference:
 
 :mod:`tick.inference`: Inference classes
@@ -59,19 +22,8 @@ This module contains all classes giving inference tools, intended for end-users.
    :no-members:
    :no-inherited-members:
 
-Base classes
-------------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   inference.base.LearnerOptim
-   inference.base.LearnerGLM
-
-Classes
--------
+Generalized linear models
+-------------------------
 .. currentmodule:: tick
 
 .. autosummary::
@@ -80,9 +32,21 @@ Classes
 
    inference.LogisticRegression
    inference.CoxRegression
+
+Hawkes
+------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
    inference.HawkesExpKern
    inference.HawkesSumExpKern
-
+   inference.HawkesConditionalLaw
+   inference.HawkesEM
+   inference.HawkesADM4
+   inference.HawkesBasisKernels
 
 .. _api-optim-model:
 
@@ -98,25 +62,8 @@ in tick.
    :no-members:
    :no-inherited-members:
 
-Base classes
-------------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   optim.model.base.Model
-   optim.model.base.ModelFirstOrder
-   optim.model.base.ModelGeneralizedLinear
-   optim.model.base.ModelGeneralizedLinearWithIntercepts
-   optim.model.base.ModelLabelsFeatures
-   optim.model.base.ModelLipschitz
-   optim.model.base.ModelSecondOrder
-   optim.model.base.ModelSelfConcordant
-
-Classes
--------
+Generalized Linear Models
+-------------------------
 .. currentmodule:: tick
 
 .. autosummary::
@@ -128,8 +75,17 @@ Classes
    optim.model.ModelLogReg
    optim.model.ModelPoisReg
    optim.model.ModelCoxRegPartialLik
-   optim.model.ModelHawkesFixedExpKernLeastSq
+
+Hawkes
+------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
    optim.model.ModelHawkesFixedExpKernLogLik
+   optim.model.ModelHawkesFixedExpKernLeastSq
    optim.model.ModelHawkesFixedSumExpKernLeastSq
 
 
@@ -140,18 +96,6 @@ This module contains all the proximal operators available in tick.
 
 **User guide:** See the :ref:`optim-prox` section for further details.
 
-Base classes
-------------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   optim.prox.base.Prox
-
-Classes
--------
 .. currentmodule:: tick
 
 .. autosummary::
@@ -179,22 +123,8 @@ This module contains all the solvers available in tick.
 
 **User guide:** See the :ref:`optim-solver` section for further details.
 
-Base classes
-------------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   optim.solver.base.Solver
-   optim.solver.base.SolverFirstOrder
-   optim.solver.base.SolverSto
-   optim.solver.base.SolverFirstOrderSto
-   optim.history.History
-
-Classes
--------
+Batch solvers
+-------------
 .. currentmodule:: tick
 
 .. autosummary::
@@ -205,10 +135,29 @@ Classes
    optim.solver.AGD
    optim.solver.BFGS
    optim.solver.GFB
-   optim.solver.SCPG
+
+Stochastic solvers
+------------------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
    optim.solver.SGD
-   optim.solver.SDCA
    optim.solver.SVRG
+   optim.solver.SDCA
+   optim.solver.AdaGrad
+
+History
+-------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+   optim.history.History
 
 
 .. _api-plot:
@@ -228,9 +177,14 @@ Functions
    :toctree: generated/
    :template: function.rst
 
+   plot.plot_history
+   plot.plot_hawkes_kernels
+   plot.plot_hawkes_kernel_norms
+   plot.plot_basis_kernels
+   plot.plot_timefunction
+   plot.plot_point_process
    plot.stem
    plot.stems
-   plot.plot_history
 
 
 .. _api-preprocessing:
@@ -255,27 +209,15 @@ Classes
 
 .. _api-simulation:
 
-:mod:`tick.simulation`: Simulation classes and fuctions
-=======================================================
+:mod:`tick.simulation`: Simulation classes and functions
+========================================================
 
 This module contains all simulation tools available in tick.
 
 **User guide:** See the :ref:`simulation` section for further details.
 
-Base classes
-------------
-.. currentmodule:: tick
-
-.. autosummary::
-   :toctree: generated/
-   :template: class.rst
-
-   simulation.base.Simu
-   simulation.base.SimuWithFeatures
-   simulation.base.SimuPointProcess
-
-Classes
--------
+Generalized linear models
+-------------------------
 .. currentmodule:: tick
 
 .. autosummary::
@@ -286,18 +228,37 @@ Classes
    simulation.SimuLogReg
    simulation.SimuPoisReg
    simulation.SimuCoxReg
+
+Point processes
+---------------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
    simulation.SimuPoissonProcess
    simulation.SimuInhomogeneousPoisson
    simulation.SimuHawkes
    simulation.SimuHawkesExpKernels
    simulation.SimuHawkesSumExpKernels
+
+Hawkes kernels
+--------------
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
    simulation.HawkesKernelExp
    simulation.HawkesKernelSumExp
    simulation.HawkesKernelPowerLaw
    simulation.HawkesKernelTimeFunc
+   base.TimeFunction
 
-Functions
----------
+Features generators
+-------------------
 .. currentmodule:: tick
 
 .. autosummary::
