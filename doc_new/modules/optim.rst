@@ -30,11 +30,6 @@ Module API                Documentation        Description
 ========================  ====================================  ============
 
 
-.. todo::
-
-    The module links to the API don't work for prox and solver, I don't know why
-
-
 .. _optim-first-example:
 
 A First example
@@ -46,8 +41,7 @@ elastic-net penalization.
 Note that, we specify a ``range=(0, n_features)`` so that the intercept is not penalized
 (see :ref:`Prox classes <optim-prox>` below for more details).
 
-
-.. plot:: modules/code_samples/optim_comparison.py
+.. plot:: modules/code_samples/optim/comparison.py
     :include-source:
 
 
@@ -151,17 +145,15 @@ The gradient of the model can be computed using the ``grad`` method
 
 .. code-block:: python
 
-    plt.figure(figsize=(9, 3))
-    plt.subplot(1, 2, 1)
-    plt.stem(model.grad(coeffs0))
-    plt.title(r"$\nabla f(\mathrm{coeffs0})$", fontsize=16)
-    plt.subplot(1, 2, 2)
-    plt.stem(model.grad(np.ones(model.n_coeffs)))
-    plt.title(r"$\nabla f(\mathrm{coeffs1})$", fontsize=16)
+    _, ax = plt.subplots(1, 2, sharey=True, figsize=(9, 3))
+    ax[0].stem(model.grad(coeffs0))
+    ax[0].set_title(r"$\nabla f(\mathrm{coeffs0})$", fontsize=16)
+    ax[1].stem(model.grad(np.ones(model.n_coeffs)))
+    ax[1].set_title(r"$\nabla f(\mathrm{coeffs1})$", fontsize=16)
 
 which plots
 
-.. plot:: modules/code_samples/optim_grad.py
+.. plot:: modules/code_samples/optim/grad.py
 
 We observe that the gradient near the optimum is much smaller than far from it.
 
@@ -245,9 +237,26 @@ Cox regression partial likelihood  :class:`ModelCoxRegPartialLik <tick.optim.mod
 1.5. Hawkes models
 ------------------
 
-.. todo::
+Hawkes process are point processes defined by the intensities:
 
-    DESCRIPTION DU MODELE
+.. math::
+    \forall i \in [1 \dots D], \quad
+    \lambda_i(t) = \mu_i + \sum_{j=1}^D \int \phi_{ij}(t - s) dN_j(s)
+
+where
+
+* :math:`D` is the number of nodes
+* :math:`\mu_i` are the baseline intensities
+* :math:`\phi_{ij}` are the kernels
+* :math:`dN_j` are the processes differentiates
+
+One way to infer Hawkes processes is to suppose their kernels have a
+parametric shape. Usually kernels have an exponential parametrization as it
+allows very fast computations.
+
+In *tick*, three exponential models are implemented. They differ by the
+parametrization of the kernel (exponential or sum-exponential) or by the loss
+function used (least squares or log-likelihood).
 
 ==============================================================  ===============================
 Model                                                           Class
@@ -342,7 +351,7 @@ where :math:`t` is a parameter passed using the ``step`` argument.
 The output of ``call`` can optionally be passed using the ``out`` argument (this avoid unnecessary copies, and
 thus extra memory allocation).
 
-.. plot:: modules/code_samples/optim-prox-api.py
+.. plot:: modules/code_samples/optim/prox-api.py
     :include-source:
 
 The value of :math:`g` is simply obtained using the ``value`` method
@@ -387,45 +396,14 @@ It simply applies sequentially each operator passed to :class:`ProxMulti <tick.o
 one after the other. Here is an example of combination of a total-variation penalization and L1 penalization
 applied to different parts of a vector.
 
-.. plot::
+.. plot:: modules/code_samples/optim/prox-multi.py
     :include-source:
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from tick.optim.prox import ProxL1, ProxTV, ProxMulti
-
-    s = 0.4
-
-    prox = ProxMulti(
-        proxs=(
-            ProxTV(strength=s, range=(0, 20)),
-            ProxL1(strength=2*s, range=(20, 50))
-        )
-    )
-
-    x = np.random.randn(50)
-    a, b = x.min() - 1e-1, x.max() + 1e-1
-
-    plt.figure(figsize=(8, 4))
-    plt.subplot(1, 2, 1)
-    plt.stem(x)
-    plt.title("original vector", fontsize=16)
-    plt.xlim((-1, 51))
-    plt.ylim((a, b))
-    plt.subplot(1, 2, 2)
-    plt.stem(prox.call(x))
-    plt.title("ProxMulti: TV and L1", fontsize=16)
-    plt.xlim((-1, 51))
-    plt.ylim((a, b))
-    plt.vlines(20, a, b, linestyles='dashed')
-    plt.tight_layout()
-
 
 Example
 -------
 Here is an illustration of the effect of these proximal operators on an example.
 
-.. plot:: modules/code_samples/optim-prox-example.py
+.. plot:: modules/code_samples/optim/prox-example.py
     :include-source:
 
 
@@ -537,5 +515,3 @@ computations. Some methods are hidden within this C++ object, and are accessible
 only through C++ (such as ``loss_i`` and ``grad_i`` that compute the gradient
 using the single data point :math:`(x_i, y_i)`). These hidden methods are used
 in the stochastic solvers, and are available through C++ only for efficiency.
-These methods are described in the C++ documentation here
-(TODO: add the link to doxygen)

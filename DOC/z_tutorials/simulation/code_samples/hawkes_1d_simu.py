@@ -1,16 +1,17 @@
-from tick.plot import plot_point_process
-from tick.simulation import SimuHawkes, HawkesKernelExp
-import matplotlib.pyplot as plt
-from pylab import rcParams
+"""
+A 1 dimensional Hawkes process
+"""
 
-rcParams['figure.figsize'] = 20, 4
+from tick.plot import plot_point_process
+from tick.simulation import SimuHawkes, HawkesKernelSumExp
+import matplotlib.pyplot as plt
+
 run_time = 40
 
-hawkes = SimuHawkes(n_nodes=1, end_time=run_time,
-                    verbose=False)  # 1 dimension Hawkes
-kernel = HawkesKernelExp(1 / 4, 4)  # Specifying the kernel element (0,0)
+hawkes = SimuHawkes(n_nodes=1, end_time=run_time, verbose=False, seed=1398)
+kernel = HawkesKernelSumExp([.1, .2, .1], [1., 3., 7.])
 hawkes.set_kernel(0, 0, kernel)
-hawkes.set_baseline(0, 1.5)  # And the exogeneous intensity element 0
+hawkes.set_baseline(0, 1.)
 
 dt = 0.01
 hawkes.track_intensity(dt)
@@ -19,9 +20,8 @@ timestamps = hawkes.timestamps
 intensity = hawkes.tracked_intensity
 intensity_times = hawkes.intensity_tracked_times
 
-ax1 = plt.subplot(121)
-plot_point_process(hawkes, n_points=50000, t_min=2, t_max=20, ax=ax1)
+_, ax = plt.subplots(1, 2, figsize=(16, 4))
+plot_point_process(hawkes, n_points=50000, t_min=2, max_jumps=10, ax=ax[0])
+plot_point_process(hawkes, n_points=50000, t_min=2, t_max=20, ax=ax[1])
 
-ax2 = plt.subplot(122)
-plot_point_process(hawkes, n_points=50000, t_min=2, max_jumps=25, ax=ax2)
-
+plt.show()

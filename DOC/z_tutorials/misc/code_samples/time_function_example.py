@@ -28,5 +28,3 @@ plot_timefunction(tf_3, ax=ax3)
 ax3.set_ylim([-0.5, 6.0])
 
 plt.show()
-
-print(ax1.__class__)

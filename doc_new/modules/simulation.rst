@@ -103,6 +103,7 @@ A Hawkes process is defined through its kernels which are functions defined on
    simulation.HawkesKernelPowerLaw
    simulation.HawkesKernelTimeFunc
 
+.. _simulation-linear-model:
 
 2. Linear model simulation
 ==========================

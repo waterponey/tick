@@ -96,6 +96,10 @@ This module contains all the proximal operators available in tick.
 
 **User guide:** See the :ref:`optim-prox` section for further details.
 
+.. automodule:: tick.optim.prox
+   :no-members:
+   :no-inherited-members:
+
 .. currentmodule:: tick
 
 .. autosummary::
@@ -122,6 +126,10 @@ This module contains all the proximal operators available in tick.
 This module contains all the solvers available in tick.
 
 **User guide:** See the :ref:`optim-solver` section for further details.
+
+.. automodule:: tick.optim.solver
+   :no-members:
+   :no-inherited-members:
 
 Batch solvers
 -------------

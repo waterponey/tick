@@ -24,7 +24,7 @@ agd = AGD(linesearch=False, **solver_params).set_model(model).set_prox(prox)
 agd.solve(x0, step=1 / model.get_lip_best())
 
 sgd = SGD(**solver_params).set_model(model).set_prox(prox)
-sgd.solve(x0, step=5.)
+sgd.solve(x0, step=500.)
 
 svrg = SVRG(**solver_params).set_model(model).set_prox(prox)
 svrg.solve(x0, step=1 / model.get_lip_max())

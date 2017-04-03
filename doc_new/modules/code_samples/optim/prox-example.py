@@ -17,18 +17,17 @@ proxs = [
     ProxTV(strength=s)
 ]
 
-plt.figure(figsize=(16, 8))
-plt.subplot(2, 4, 1)
-plt.stem(x)
-plt.title("original vector", fontsize=16)
-plt.xlim((-1, 51))
-plt.ylim((a, b))
+fig, _ = plt.subplots(2, 4, figsize=(16, 8), sharey=True, sharex=True)
+fig.axes[0].stem(x)
+fig.axes[0].set_title("original vector", fontsize=16)
+fig.axes[0].set_xlim((-1, 51))
+fig.axes[0].set_ylim((a, b))
 
 for i, prox in enumerate(proxs):
-    plt.subplot(2, 4, i + 2)
-    plt.stem(prox.call(x))
-    plt.title(prox.name, fontsize=16)
-    plt.xlim((-1, 51))
-    plt.ylim((a, b))
+    fig.axes[i + 1].stem(prox.call(x))
+    fig.axes[i + 1].set_title(prox.name, fontsize=16)
+    fig.axes[i + 1].set_xlim((-1, 51))
+    fig.axes[i + 1].set_ylim((a, b))
 
 plt.tight_layout()
+plt.show()

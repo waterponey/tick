@@ -2,8 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tick.optim.prox import ProxL1
 
-plt.figure(figsize=(20, 4))
-
 x = 0.5 * np.random.randn(50)
 a, b = x.min() - 1e-1, x.max() + 1e-1
 
@@ -23,11 +21,13 @@ names = [
     "range=(10, 40) and positive=True",
 ]
 
-for i, (prox, name) in enumerate(zip(proxs, names)):
-    plt.subplot(1, 5, i + 1)
-    plt.stem(prox.call(x))
-    plt.title(name)
-    plt.xlim((-1, 51))
-    plt.ylim((a, b))
+_, ax_list = plt.subplots(1, 5, figsize=(20, 4), sharey=True)
+
+for prox, name, ax in zip(proxs, names, ax_list):
+    ax.stem(prox.call(x))
+    ax.set_title(name)
+    ax.set_xlim((-1, 51))
+    ax.set_ylim((a, b))
 
 plt.tight_layout()
+plt.show()
