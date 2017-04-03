@@ -1,5 +1,4 @@
 
-
 .. _simulation:
 
 ==========================================
@@ -16,19 +15,10 @@ Hawkes processes. Utilities for simulation of model coefficients
 (with sparsity, etc.) and utilities for features matrix simulation
 are provided as well.
 
-Contents
-========
+.. contents::
+    :depth: 2
+    :backlinks: none
 
-.. toctree::
-   :maxdepth: 2
-
-* :ref:`simulation-tools`
-* :ref:`simulation-linear-model`
-* :ref:`simulation-survival`
-* :ref:`simulation-point-process`
-
-
-.. _simulation-tools:
 
 1. Simulation tools
 ===================
@@ -78,15 +68,28 @@ a particular covariance matrix (uniform symmetrized or toeplitz).
 
     Insert a sample code here
 
-1.3 Kernels for Hawkes process simulation
+1.3 Time function
+-----------------
+
+A class of time function to explicitly define a function on
+:math:`[0, \infty)`. It uses several types of interpolation to determine value
+between two points.
+It is used for the simulation of an inhomogeneous Poisson process and some
+Hawkes processes.
+
+**Example**
+
+.. plot:: modules/code_samples/simulation/time_function.py
+    :include-source:
+
+1.4 Kernels for Hawkes process simulation
 -----------------------------------------
 
-Kernels are useful objects for the custom simulation of Hawkes processes.
-They can be used together with the class ????
+A Hawkes process is defined through its kernels which are functions defined on
+:math:`[0, \infty)`.
 
-.. todo::
-
-    Insert a sample code here
+.. plot:: modules/code_samples/simulation/hawkes_kernels.py
+    :include-source:
 
 .. currentmodule:: tick
 
@@ -94,25 +97,12 @@ They can be used together with the class ????
    :toctree: generated/
    :template: class.rst
 
+   simulation.HawkesKernel0
    simulation.HawkesKernelExp
    simulation.HawkesKernelSumExp
    simulation.HawkesKernelPowerLaw
    simulation.HawkesKernelTimeFunc
 
-
-1.4 Time function
------------------
-
-A class of time function is provided for the simulation of an inhomogeneous
-Poisson process.
-It is then intended to be used with the class ???
-
-.. todo::
-
-    Insert a sample code here
-
-
-.. _simulation-linear-model:
 
 2. Linear model simulation
 ==========================
@@ -144,8 +134,6 @@ Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})` 
     DONNER UN PEU PLUS DE DETAILS SUR LES OPTIONS DE CES CLASSES
 
 
-.. _simulation-survival:
-
 3. Survival analysis simulation
 ===============================
 
@@ -170,13 +158,11 @@ Model                                Class
 Cox regression with right-censoring  :class:`tick.simulation.SimuCoxReg`
 ===================================  ===================================
 
-**Example**
+**Examples**
 
 .. plot:: modules/code_samples/simulation_coxreg.py
     :include-source:
 
-
-.. _simulation-point-process:
 
 4. Point process simulation
 ===========================
@@ -188,7 +174,8 @@ Poisson processes and Hawkes processes.
 4.1 Poisson processes
 ---------------------
 
-The following classes are available for
+Both homogeneous and inhomogeneous Poisson process might be simulated with tick
+thanks to the following classes.
 
 .. currentmodule:: tick
 
@@ -199,19 +186,26 @@ The following classes are available for
    simulation.SimuPoissonProcess
    simulation.SimuInhomogeneousPoisson
 
+**Examples**
 
-.. todo::
+A Poisson process with constant intensity
 
-    COMPLETER ET BLABLATER
+.. plot:: modules/code_samples/simulation/poisson_constant_intensity.py
+    :include-source:
+
+A Poisson process with variable intensity. In this case, the intensity is
+defined through a `tick.base.TimeFunction`
+
+.. plot:: modules/code_samples/simulation/poisson_inhomogeneous.py
+    :include-source:
 
 4.2 Hawkes processes
 --------------------
 
-
-.. todo::
-
-    COMPLETER ET BLABLATER
-
+Simulation of Hawkes processes can be done using the following classes. The
+main class `tick.simulation.SimuHawkes` might use any type of kernels and
+will perform simulation. For some specific cases there are some classes
+dedicated to a type of kernel: exponential or sum of exponential kernels.
 
 .. currentmodule:: tick
 
@@ -222,3 +216,9 @@ The following classes are available for
    simulation.SimuHawkes
    simulation.SimuHawkesExpKernels
    simulation.SimuHawkesSumExpKernels
+
+.. plot:: modules/code_samples/simulation/hawkes_1d_simu.py
+    :include-source:
+
+.. plot:: modules/code_samples/simulation/hawkes_multidim_simu.py
+    :include-source:

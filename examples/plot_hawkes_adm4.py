@@ -1,6 +1,6 @@
 """
 ========================================
-Fix exponential kernels with Hawkes ADM4
+Fit exponential kernels with Hawkes ADM4
 ========================================
 
 Hawkes ADM4 algorithm enforce sparse and low rank adjacency matrix

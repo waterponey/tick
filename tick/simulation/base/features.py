@@ -7,7 +7,7 @@ def features_normal_cov_uniform(n_samples: int = 200,
                                 n_features: int = 30):
     """
     An example of features obtained as samples of a centered Gaussian
-    vector with a specific covariance matrix given by O.5 * (U + U.T),
+    vector with a specific covariance matrix given by 0.5 * (U + U.T),
     where U is uniform on [0, 1] and diagonal filled by ones.
 
     Parameters
