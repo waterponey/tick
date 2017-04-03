@@ -64,7 +64,7 @@ Now we plot several time functions
 
 This code will produce graphs of the above described functions
 
-.. plot:: z_tutorials/misc/code_samples/time_function_example.py
+.. plot:: modules/examples/misc/code_samples/time_function_example.py
     :include-source:
 
 

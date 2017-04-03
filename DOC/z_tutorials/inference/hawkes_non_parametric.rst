@@ -8,12 +8,12 @@ Hawkes non parametric inference
 Windows kernels
 ---------------
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_em_timefunc.py
+.. plot:: modules/code_samples/examples/inference/hawkes_em_timefunc.py
     :include-source:
 
 Exponential kernels
 -------------------
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_em_decreasing_kernels.py
+.. plot:: modules/code_samples/examples/inference/hawkes_em_decreasing_kernels.py
     :include-source:
 

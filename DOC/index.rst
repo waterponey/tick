@@ -18,7 +18,7 @@
            toolbox is proposed, with recent state-of-the-art stochastic
            solvers.
         </p>
-        <a class="btn btn-primary btn-lg" href="z_tutorials/index.html" role="button">
+        <a class="btn btn-primary btn-lg" href="modules/examples/index.html" role="button">
            Show me »
         </a>
      </div>
@@ -26,7 +26,7 @@
 
   <div class="row">
      <div class="col-sm-4 col-sm-offset-1">
-        <a class="reference internal" href="z_tutorials/index.html">
+        <a class="reference internal" href="modules/examples/index.html">
            <h2>Tutorials</h2>
         </a>
         <p>
@@ -96,7 +96,7 @@
     :maxdepth: 2
     :hidden:
 
-    z_tutorials/index
+    modules/examples/index
     inference/index
     simulation/index
     optim/index

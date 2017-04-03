@@ -29,6 +29,8 @@ except ImportError:
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath('sphinxext'))
+
 
 # -- General configuration ----------------------------------------------------
 
@@ -48,15 +50,14 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
-    'numpydoc',
+    'sphinxext.numpy_ext.numpydoc',
     'sphinx.ext.doctest',
-    'matplotlib.sphinxext.plot_directive'
+    'matplotlib.sphinxext.plot_directive',
+    'gen_rst'
 ]
 
 
 todo_include_todos = True
-
-autosummary_generate = True
 
 autodoc_default_flags = ['members', 'inherited-members']
 
@@ -353,7 +354,11 @@ html_theme_options = {
 # We need to do this as with newbase metaclass we pass all attributes as
 # properties. If you want to document a property, please do it in your class
 # docstring instead of in property getter as usual.
+# This also allow to document __init__ which we cannot get working with
+# templates...
 def autodoc_skip_member(app, what, name, obj, skip, options):
+    if name == "__init__":
+        return False
     exclude = isinstance(obj, property)
     return skip or exclude
 

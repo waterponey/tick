@@ -12,5 +12,5 @@ with five different solvers:
     * GD (`tick.optim.solver.GD`)
     * AGD (`tick.optim.solver.AGD`)
 
-.. plot:: z_tutorials/optimization/code_samples/linear_model.py
+.. plot:: modules/examples/optimization/code_samples/linear_model.py
     :include-source:

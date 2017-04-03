@@ -57,7 +57,7 @@ We can have a look at the result:
             [ 0.53529197, -0.03144761]])
     >>> e.plot() # doctest: +SKIP
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_non_parametric_exp.py
+.. plot:: modules/code_samples/examples/inference/hawkes_non_parametric_exp.py
 
 
 Case of a 2-dimensional Hawkes process with power-law kernels
@@ -135,7 +135,7 @@ For displaying powerlaw kernels it is better to use log-log-scales
     >>> fig = plot_hawkes_kernels(e, log_scale=True, hawkes=hawkes,
     ...                           min_support=0.002) # doctest: +SKIP
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_non_parametric_power_law.py
+.. plot:: modules/code_samples/examples/inference/hawkes_non_parametric_power_law.py
 
 A case with Time function kernels and negative kernels
 ------------------------------------------------------

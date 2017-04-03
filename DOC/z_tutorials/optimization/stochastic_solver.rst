@@ -78,5 +78,5 @@ Plot
 ----
 We can also easily plot and evaluate different solvers on the same problem
 
-.. plot:: z_tutorials/optimization/code_samples/solvers_convergence.py
+.. plot:: modules/examples/optimization/code_samples/solvers_convergence.py
     :include-source:

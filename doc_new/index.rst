@@ -19,7 +19,8 @@
 
            It comes also with inference and simulation tools intended for end-users.
         </p>
-        <a class="btn btn-primary btn-lg" href="modules/tutorials.html" role="button">
+        <a class="btn btn-primary btn-lg" href="auto_examples/index.html"
+        role="button">
            Show me »
         </a>
      </div>
@@ -27,8 +28,8 @@
 
   <div class="row">
      <div class="col-sm-4 col-sm-offset-1">
-        <a class="reference internal" href="modules/tutorials.html">
-           <h2>Tutorials</h2>
+        <a class="reference internal" href="auto_examples/index.html">
+           <h2>Examples</h2>
         </a>
         <p>
            Examples of how to simulate models, use the optimization toolbox, or
@@ -93,7 +94,7 @@
     :maxdepth: 2
     :hidden:
 
-    modules/tutorials
+    auto_examples/index
     modules/api
     modules/inference
     modules/optim

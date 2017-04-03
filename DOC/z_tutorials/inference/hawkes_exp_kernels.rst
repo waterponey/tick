@@ -39,7 +39,7 @@ We can use learner `HawkesExpKern` to infer these Hawkes models. We
 provide here a quick example. An exhaustive list of its capabilities is
 available in the class documentation (`tick.inference.HawkesExpKern`)
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_matrix_exp_kernels.py
+.. plot:: modules/code_samples/examples/inference/hawkes_matrix_exp_kernels.py
     :include-source:
 
 Hawkes ADM4 for lasso and nuclear penalization
@@ -56,7 +56,7 @@ Multi-dimensional Hawkes Processes. In `AISTATS (Vol. 31, pp. 641-649)
 
 and we have implemented it as `HawkesADM4` (`tick.inference.HawkesADM4`).
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_adm4.py
+.. plot:: modules/code_samples/examples/inference/hawkes_adm4.py
     :include-source:
 
 Note that `HawkesADM4` can only be used with one decay :math:`\beta` shared
@@ -86,6 +86,6 @@ provide here a quick example. An exhaustive list of its capabilities is
 available in the class documentation (`tick.inference.HawkesSumExpKern`)
 
 
-.. plot:: z_tutorials/inference/code_samples/hawkes_sum_exp_kernels.py
+.. plot:: modules/code_samples/examples/inference/hawkes_sum_exp_kernels.py
     :include-source:
 

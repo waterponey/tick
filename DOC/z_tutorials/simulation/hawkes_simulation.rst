@@ -37,7 +37,7 @@ Exponential kernel
 
 Here we plot the track recorded intensity along with the ticks
 
-.. plot:: z_tutorials/simulation/code_samples/hawkes_1d_simu.py
+.. plot:: modules/examples/simulation/code_samples/hawkes_1d_simu.py
     :include-source:
 
 
@@ -53,7 +53,7 @@ the SimuHawkes object a matrix of :math:`\alpha`, a matrix of :math:`\beta` and
 the vector of :math:`\mu` (actually you could set the mus using the set_mu
 method)
 
-.. plot:: z_tutorials/simulation/code_samples/hawkes_multidim_simu.py
+.. plot:: modules/examples/simulation/code_samples/hawkes_multidim_simu.py
     :include-source:
 
 
@@ -142,12 +142,12 @@ We are ready for the Hawkes simulation.
 
 Let's summarize in a plot
 
-.. plot:: z_tutorials/simulation/code_samples/hawkes_power_law.py
+.. plot:: modules/examples/simulation/code_samples/hawkes_power_law.py
     :include-source:
 
 
 Time Functions and small negative kernels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. plot:: z_tutorials/simulation/code_samples/hawkes_time_func_simu.py
+.. plot:: modules/examples/simulation/code_samples/hawkes_time_func_simu.py
     :include-source:

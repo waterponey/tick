@@ -13,7 +13,7 @@ these two kinds of processes.
 Poisson process with constant intensity
 ---------------------------------------
 
-.. plot:: z_tutorials/simulation/code_samples/poisson_constant_intensity.py
+.. plot:: modules/examples/simulation/code_samples/poisson_constant_intensity.py
     :include-source:
 
 
@@ -22,7 +22,7 @@ Inhomogeneous Poisson processes
 
 Now we plot a Poisson process with varying intensity
 
-.. plot:: z_tutorials/simulation/code_samples/poisson_simple_homogeneous.py
+.. plot:: modules/examples/simulation/code_samples/poisson_simple_homogeneous.py
     :include-source:
 
 We see that the higher the intensity is, the more jumps we have.
