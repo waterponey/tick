@@ -1,10 +1,11 @@
 """
-========================================
-Fit exponential kernels with Hawkes ADM4
-========================================
+=========================================================
+Fit sparse and low rank adjacency matrix with Hawkes ADM4
+=========================================================
 
-Hawkes ADM4 algorithm (`tick.inference.HawkesADM4`)  enforce sparse and low
-rank adjacency matrix.
+Hawkes ADM4 algorithm (`tick.inference.HawkesADM4`) enforce sparse and low
+rank adjacency matrix. It assumes hawkes model has been generated with
+exponential kernels.
 
 This algorithm has been introduced in the following paper:
 
