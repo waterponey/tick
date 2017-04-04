@@ -24,12 +24,13 @@ except ImportError:
   warnings.warn('Cannot use boostrap theme, agogo will be used instead.\n'
                 'You can run pip install sphinx_bootstrap_theme')
 
+from docutils.parsers.rst import directives
+
 # TODO: try to remove this
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../'))
-sys.path.insert(0, os.path.abspath('sphinxext'))
 
 
 # -- General configuration ----------------------------------------------------
@@ -53,7 +54,8 @@ extensions = [
     'sphinxext.numpy_ext.numpydoc',
     'sphinx.ext.doctest',
     'matplotlib.sphinxext.plot_directive',
-    'gen_rst'
+    'sphinxext.gen_rst',
+    'sphinxext.directives',
 ]
 
 
@@ -365,15 +367,4 @@ def autodoc_skip_member(app, what, name, obj, skip, options):
 
 def setup(app):
     app.connect('autodoc-skip-member', autodoc_skip_member)
-
-#
-# intersphinx_mapping = {
-#     'python': ('https://docs.python.org/3', None),
-#                 'numpy': ('http://docs.scipy.org/doc/numpy/', None),
-#                 'scipy': ('http://docs.scipy.org/doc/scipy/reference/',
-#                           None),
-#                 'matplotlib': ('http://matplotlib.sourceforge.net/',
-#                                None)
-# }
-
 

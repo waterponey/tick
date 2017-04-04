@@ -976,7 +976,7 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
 
     backrefs = set('{module_short}.{name}'.format(**entry)
                    for entry in example_code_obj.values()
-                   if entry['module'].startswith('sklearn'))
+                   if entry['module'].startswith('tick'))
     return backrefs
 
 

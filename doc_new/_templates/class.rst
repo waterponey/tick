@@ -8,3 +8,5 @@
 
 .. autoclass:: {{ objname }}
 
+.. include:: {{ fullname }}.examples
+    :allowmissing:

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from tick.inference import HawkesEM
-from tick.simulation import SimuHawkes, HawkesKernelTimeFunc
+from tick.simulation import SimuHawkes, HawkesKernelTimeFunc, HawkesKernelExp
 from tick.base import TimeFunction
 from tick.plot import plot_hawkes_kernels
 
@@ -26,7 +26,7 @@ hawkes = SimuHawkes(baseline=baseline, end_time=run_time, verbose=False,
                     seed=2334)
 
 hawkes.set_kernel(0, 0, kernel1)
-hawkes.set_kernel(0, 1, kernel1)
+hawkes.set_kernel(0, 1, HawkesKernelExp(.5, .7))
 hawkes.set_kernel(1, 1, kernel2)
 
 hawkes.simulate()
