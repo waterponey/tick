@@ -5,8 +5,13 @@
 
 _tick_ is a Python 3 module for statistical learning, with a particular emphasis on time-dependent modelling. It is distributed under the 3-Clause BSD license, see [LICENSE.txt](LICENSE.txt).
 
-The project was started in 2016 by Emmanuel Bacry, Martin Bompaire, Stéphane Gaïffas and Søren Vinther Poulsen at the [Center for Applied Mathematics](http://www.cmap.polytechnique.fr/) of [École Polytechnique](https://www.polytechnique.edu), France.
+The project was started in 2016 by Emmanuel Bacry, Martin Bompaire, Stéphane 
+Gaïffas and Søren Vinther Poulsen at the 
+[Datascience initiative](https://portail.polytechnique.edu/datascience/en) 
+of [École Polytechnique](https://www.polytechnique.edu), France.
 The list of contributors is available in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+## Quick description
 
 ## Installation
 
@@ -17,9 +22,9 @@ _tick_ requires Python 3.4 or newer. Please have the required Python dependencie
 - numpy
 - sciPy
 - numpydoc
-- sphinx
+- sphinx (to be removed?)
 - scikit-learn
-- bokeh
+- bokeh (to be removed?)
 - matplotlib
 - pandas
 
@@ -28,6 +33,8 @@ If you build and install _tick_ via _pip_ these dependencies will automatically 
 If not, you can install all of these dependencies easily using:
 
     pip install -r requirements.txt
+
+Add swig?
 
 ### Source installations
 
