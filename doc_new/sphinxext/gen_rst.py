@@ -278,7 +278,10 @@ class SphinxDocLinkResolver(object):
                 fname_idx = value[cobj['name']][0]
 
         if fname_idx is not None:
-            fname = self._searchindex['filenames'][fname_idx] + '.html'
+            fname = self._searchindex['filenames'][fname_idx]
+            if fname[-4:] == '.rst':
+                fname = fname[:-4]
+            fname += '.html'
 
             if self._is_windows:
                 fname = fname.replace('/', '\\')
@@ -767,7 +770,7 @@ class NameFinder(ast.NodeVisitor):
 
 
 def identify_names(code):
-    """Builds a codeobj summary by identifying and resovles used names
+    """Builds a codeobj summary by identifying and resolves used names
 
     >>> code = '''
     ... from a.b import c
@@ -961,6 +964,22 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
     time_m, time_s = divmod(time_elapsed, 60)
 
     # save variables so we can later add links to the documentation
+    backrefs = get_backref(example_file)
+
+    f = open(os.path.join(target_dir, base_image_name + '.rst'), 'w')
+    f.write(this_template % locals())
+    if len(backrefs) > 0:
+        f.write('\nMentioned *tick* classes:\n')
+        sorted_backrefs = list(backrefs)
+        sorted_backrefs.sort()
+        for backref in sorted_backrefs:
+            f.write('   * `{}`\n'.format(backref))
+    f.flush()
+
+    return backrefs
+
+
+def get_backref(example_file):
     if six.PY2:
         example_code_obj = identify_names(open(example_file).read())
     else:
@@ -974,16 +993,6 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
     backrefs = set('{module_short}.{name}'.format(**entry)
                    for entry in example_code_obj.values()
                    if entry['module'].startswith('tick'))
-
-    f = open(os.path.join(target_dir, base_image_name + '.rst'), 'w')
-    f.write(this_template % locals())
-    if len(backrefs) > 0:
-        f.write('\nMentioned *tick* classes:\n')
-        sorted_backrefs = list(backrefs)
-        sorted_backrefs.sort()
-        for backref in sorted_backrefs:
-            f.write('   * `{}`\n'.format(backref))
-    f.flush()
 
     return backrefs
 
@@ -1000,10 +1009,11 @@ def embed_code_links(app, exception):
 
     # Add resolvers for the packages for which we want to show links
     doc_resolvers = {}
-    doc_resolvers['sklearn'] = SphinxDocLinkResolver(app.builder.outdir,
-                                                     relative=True)
+    doc_resolvers['tick'] = SphinxDocLinkResolver(app.builder.outdir,
+                                                  relative=True)
 
     resolver_urls = {
+        'sklearn': "http://scikit-learn.org/stable",
         'matplotlib': 'http://matplotlib.org',
         'numpy': 'http://docs.scipy.org/doc/numpy-1.6.0',
         'scipy': 'http://docs.scipy.org/doc/scipy-0.11.0/reference',
