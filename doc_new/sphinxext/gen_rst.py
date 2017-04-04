@@ -959,9 +959,6 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
             image_list += HLIST_IMAGE_TEMPLATE % figure_name.lstrip('/')
 
     time_m, time_s = divmod(time_elapsed, 60)
-    f = open(os.path.join(target_dir, base_image_name + '.rst'), 'w')
-    f.write(this_template % locals())
-    f.flush()
 
     # save variables so we can later add links to the documentation
     if six.PY2:
@@ -977,6 +974,17 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
     backrefs = set('{module_short}.{name}'.format(**entry)
                    for entry in example_code_obj.values()
                    if entry['module'].startswith('tick'))
+
+    f = open(os.path.join(target_dir, base_image_name + '.rst'), 'w')
+    f.write(this_template % locals())
+    if len(backrefs) > 0:
+        f.write('\nMentioned *tick* classes:\n')
+        sorted_backrefs = list(backrefs)
+        sorted_backrefs.sort()
+        for backref in sorted_backrefs:
+            f.write('   * `{}`\n'.format(backref))
+    f.flush()
+
     return backrefs
 
 
