@@ -21,7 +21,7 @@ import posixpath
 import subprocess
 import warnings
 from sklearn.externals import six
-
+from docutils.core import publish_string
 
 # Try Python 2 first, otherwise load from Python 3
 try:
@@ -460,10 +460,7 @@ def extract_docstring(filename, ignore_heading=False):
                         first_par = ((first_par[:95] + '...')
                                      if len(first_par) > 95 else first_par)
                     else:
-                        raise ValueError("Docstring not found by gallery.\n"
-                                         "Please check the layout of your"
-                                         " example file:\n {}\n and make sure"
-                                         " it's correct".format(filename))
+                        first_par = ''
                 else:
                     first_par = paragraphs[0]
 
@@ -480,6 +477,10 @@ def generate_example_rst(app):
                                                'examples'))
     generated_dir = os.path.abspath(os.path.join(app.builder.srcdir,
                                                  'modules', 'generated'))
+
+    code_samples_dir = os.path.abspath(os.path.join(app.builder.srcdir,
+                                                    'modules',
+                                                    'code_samples'))
 
     try:
         plot_gallery = eval(app.builder.config.plot_gallery)
@@ -523,6 +524,13 @@ Examples
     for directory in sorted(os.listdir(example_dir)):
         if os.path.isdir(os.path.join(example_dir, directory)):
             generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery, seen_backrefs)
+
+    generate_dir_rst('.', fhindex, code_samples_dir, root_dir, plot_gallery,
+                     seen_backrefs, display=False)
+    for (dirpath, dirnames, _) in os.walk(code_samples_dir):
+        for dirname in dirnames:
+            generate_dir_rst(dirname, fhindex, code_samples_dir, root_dir,
+                             plot_gallery, seen_backrefs, display=False)
     fhindex.flush()
 
 
@@ -604,8 +612,10 @@ def _thumbnail_div(subdir, full_dir, fname, snippet, is_backref=False):
     return ''.join(out)
 
 
-def generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery, seen_backrefs):
+def generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery,
+                     seen_backrefs, display=True):
     """ Generate the rst file for an example directory.
+    display=True means it wil be added to the examples gallery
     """
     if not directory == '.':
         target_dir = os.path.join(root_dir, directory)
@@ -613,11 +623,11 @@ def generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery, se
     else:
         target_dir = root_dir
         src_dir = example_dir
-    if not os.path.exists(os.path.join(src_dir, 'README.txt')):
-        raise ValueError('Example directory %s does not have a README.txt' %
-                         src_dir)
-
-    fhindex.write("""
+    if display:
+        if not os.path.exists(os.path.join(src_dir, 'README.txt')):
+            raise ValueError('Example directory %s does not have a README.txt' %
+                             src_dir)
+        fhindex.write("""
 
 
 %s
@@ -635,7 +645,8 @@ def generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery, se
             backrefs = generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery)
             new_fname = os.path.join(src_dir, fname)
             _, snippet, _ = extract_docstring(new_fname, True)
-            fhindex.write(_thumbnail_div(directory, directory, fname, snippet))
+            if display:
+                fhindex.write(_thumbnail_div(directory, directory, fname, snippet))
             fhindex.write("""
 
 .. toctree::
@@ -658,7 +669,8 @@ def generate_dir_rst(directory, fhindex, example_dir, root_dir, plot_gallery, se
                     rel_dir = os.path.join('../../auto_examples', directory)
                     ex_file.write(_thumbnail_div(directory, rel_dir, fname, snippet, is_backref=True))
                     seen_backrefs.add(backref)
-    fhindex.write("""
+    if display:
+        fhindex.write("""
 .. raw:: html
 
     <div class="clearer"></div>
@@ -810,7 +822,7 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
     this_template = rst_template
     last_dir = os.path.split(src_dir)[-1]
     # to avoid leading . in file names, and wrong names in links
-    if last_dir == '.' or last_dir == 'examples':
+    if last_dir == '.' or last_dir == 'examples' or last_dir == 'code_samples':
         last_dir = ''
     else:
         last_dir += '_'
@@ -950,6 +962,13 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
         make_thumbnail('images/no_image.png', thumb_file, 200, 140)
 
     docstring, short_desc, end_row = extract_docstring(example_file)
+
+    # detect if docstring has a title
+    html_docstring = str(publish_string(docstring, writer_name="html"))
+    if '<h1 class="title">' not in html_docstring:
+        # If there is no title, a title equal to the file name is added
+        docstring = fname + '\n' + '=' * len(fname) + '\n' + docstring
+
 
     # Depending on whether we have one or more figures, we're using a
     # horizontal list or a single rst call to 'image'.

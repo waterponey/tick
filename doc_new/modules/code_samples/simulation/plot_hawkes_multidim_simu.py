@@ -1,5 +1,6 @@
 """
 Simulation of 3-dimensional hawkes process
+==========================================
 """
 from pylab import rcParams
 import numpy as np

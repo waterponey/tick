@@ -5,4 +5,5 @@
 
 .. autofunction:: {{ objname }}
 
-
+.. include:: {{ fullname }}.examples
+    :allowmissing:

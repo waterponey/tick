@@ -41,7 +41,7 @@ elastic-net penalization.
 Note that, we specify a ``range=(0, n_features)`` so that the intercept is not penalized
 (see :ref:`Prox classes <optim-prox>` below for more details).
 
-.. plot:: modules/code_samples/optim/comparison.py
+.. plot:: modules/code_samples/optim/plot_first_comparison.py
     :include-source:
 
 
@@ -153,7 +153,7 @@ The gradient of the model can be computed using the ``grad`` method
 
 which plots
 
-.. plot:: modules/code_samples/optim/grad.py
+.. plot:: modules/code_samples/optim/plot_grad_coeff0.py
 
 We observe that the gradient near the optimum is much smaller than far from it.
 
@@ -351,7 +351,7 @@ where :math:`t` is a parameter passed using the ``step`` argument.
 The output of ``call`` can optionally be passed using the ``out`` argument (this avoid unnecessary copies, and
 thus extra memory allocation).
 
-.. plot:: modules/code_samples/optim/prox-api.py
+.. plot:: modules/code_samples/optim/plot_prox_api.py
     :include-source:
 
 The value of :math:`g` is simply obtained using the ``value`` method
@@ -396,14 +396,14 @@ It simply applies sequentially each operator passed to :class:`ProxMulti <tick.o
 one after the other. Here is an example of combination of a total-variation penalization and L1 penalization
 applied to different parts of a vector.
 
-.. plot:: modules/code_samples/optim/prox-multi.py
+.. plot:: modules/code_samples/optim/plot_prox_multi.py
     :include-source:
 
 Example
 -------
 Here is an illustration of the effect of these proximal operators on an example.
 
-.. plot:: modules/code_samples/optim/prox-example.py
+.. plot:: modules/code_samples/optim/plot_prox_example.py
     :include-source:
 
 

@@ -43,7 +43,7 @@ Here are functions for the simulation of model weights.
 
 **Example**
 
-.. plot:: modules/code_samples/simulation_weights.py
+.. plot:: modules/code_samples/plot_simulation_weights.py
     :include-source:
 
 1.2 Simulation of a features matrix
@@ -79,7 +79,7 @@ Hawkes processes.
 
 **Example**
 
-.. plot:: modules/code_samples/simulation/time_function.py
+.. plot:: modules/code_samples/simulation/plot_time_function.py
     :include-source:
 
 1.4 Kernels for Hawkes process simulation
@@ -88,7 +88,7 @@ Hawkes processes.
 A Hawkes process is defined through its kernels which are functions defined on
 :math:`[0, \infty)`.
 
-.. plot:: modules/code_samples/simulation/hawkes_kernels.py
+.. plot:: modules/code_samples/simulation/plot_hawkes_kernels.py
     :include-source:
 
 .. currentmodule:: tick
@@ -127,7 +127,7 @@ Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})` 
 
 **Example**
 
-.. plot:: modules/code_samples/simulation_linear_model.py
+.. plot:: modules/code_samples/plot_simulation_linear_model.py
     :include-source:
 
 .. todo::
@@ -161,7 +161,7 @@ Cox regression with right-censoring  :class:`tick.simulation.SimuCoxReg`
 
 **Examples**
 
-.. plot:: modules/code_samples/simulation_coxreg.py
+.. plot:: modules/code_samples/plot_simulation_coxreg.py
     :include-source:
 
 
@@ -191,13 +191,13 @@ thanks to the following classes.
 
 A Poisson process with constant intensity
 
-.. plot:: modules/code_samples/simulation/poisson_constant_intensity.py
+.. plot:: modules/code_samples/simulation/plot_poisson_constant_intensity.py
     :include-source:
 
 A Poisson process with variable intensity. In this case, the intensity is
 defined through a `tick.base.TimeFunction`
 
-.. plot:: modules/code_samples/simulation/poisson_inhomogeneous.py
+.. plot:: modules/code_samples/simulation/plot_poisson_inhomogeneous.py
     :include-source:
 
 4.2 Hawkes processes
@@ -218,8 +218,8 @@ dedicated to a type of kernel: exponential or sum of exponential kernels.
    simulation.SimuHawkesExpKernels
    simulation.SimuHawkesSumExpKernels
 
-.. plot:: modules/code_samples/simulation/hawkes_1d_simu.py
+.. plot:: modules/code_samples/simulation/plot_hawkes_1d_simu.py
     :include-source:
 
-.. plot:: modules/code_samples/simulation/hawkes_multidim_simu.py
+.. plot:: modules/code_samples/simulation/plot_hawkes_multidim_simu.py
     :include-source:

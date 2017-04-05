@@ -1,5 +1,6 @@
 """
-A 1 dimensional Hawkes process
+1 dimensional Hawkes process simulation
+=======================================
 """
 
 from tick.plot import plot_point_process
