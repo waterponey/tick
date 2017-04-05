@@ -1020,6 +1020,11 @@ def embed_code_links(app, exception):
     """Embed hyperlinks to documentation into example code"""
     if exception is not None:
         return
+
+    # No documentation links for doctest
+    if app.builder.outdir.endswith('doctest'):
+        return
+
     print('Embedding documentation hyperlinks in examples..')
 
     if app.builder.name == 'latex':
