@@ -237,7 +237,7 @@ Cox regression partial likelihood  :class:`ModelCoxRegPartialLik <tick.optim.mod
 1.5. Hawkes models
 ------------------
 
-Hawkes process are point processes defined by the intensities:
+Hawkes processes are point processes defined by the intensities:
 
 .. math::
     \forall i \in [1 \dots D], \quad

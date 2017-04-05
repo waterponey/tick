@@ -44,10 +44,10 @@ Hawkes
 
    inference.HawkesExpKern
    inference.HawkesSumExpKern
-   inference.HawkesConditionalLaw
    inference.HawkesEM
    inference.HawkesADM4
    inference.HawkesBasisKernels
+   inference.HawkesConditionalLaw
 
 .. _api-optim-model:
 
@@ -251,6 +251,7 @@ Point processes
    simulation.SimuHawkes
    simulation.SimuHawkesExpKernels
    simulation.SimuHawkesSumExpKernels
+   simulation.SimuHawkesMulti
 
 Hawkes kernels
 --------------
@@ -278,3 +279,19 @@ Features generators
    simulation.features_normal_cov_toeplitz
    simulation.weights_sparse_exp
    simulation.weights_sparse_gauss
+
+.. _api-datasets:
+
+:mod:`tick.dataset`: Real world dataset
+=======================================
+
+**User guide:** See the :ref:`dataset` section for further details.
+
+.. currentmodule:: tick
+
+.. autosummary::
+   :toctree: generated/
+   :template: function.rst
+
+   dataset.fetch_tick_dataset
+   dataset.fetch_hawkes_bund_data

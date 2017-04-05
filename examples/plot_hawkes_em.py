@@ -32,10 +32,9 @@ tf1 = TimeFunction([t_values1, y_values1],
                    inter_mode=TimeFunction.InterConstRight, dt=0.1)
 kernel1 = HawkesKernelTimeFunc(tf1)
 
-t_values2 = np.array([0, 2, 2.5], dtype=float)
-y_values2 = np.array([0, 0.6, 0], dtype=float)
-tf2 = TimeFunction([t_values2, y_values2],
-                   inter_mode=TimeFunction.InterConstRight, dt=0.1)
+t_values2 = np.linspace(0, 4, 20)
+y_values2 = np.maximum(0., np.sin(t_values2) / 4)
+tf2 = TimeFunction([t_values2, y_values2])
 kernel2 = HawkesKernelTimeFunc(tf2)
 
 baseline = np.array([0.1, 0.3])

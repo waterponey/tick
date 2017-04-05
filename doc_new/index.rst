@@ -99,4 +99,5 @@
     modules/plot
     modules/preprocessing
     modules/simulation
+    modules/dataset
     modules/dev
