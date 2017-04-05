@@ -8,7 +8,9 @@ from tick.base import Base
 
 
 class FeaturesBinarizer(Base, BaseEstimator, TransformerMixin):
-    """This is a scikit-learn transformer that transform an input
+    """Transforms continuous data into bucketed binary data. 
+    
+    This is a scikit-learn transformer that transform an input
     pandas DataFrame X of shape (n_samples, n_features) into a binary
     matrix of size (n_samples, n_new_features).
     Continous features are modified and extended into binary features, using

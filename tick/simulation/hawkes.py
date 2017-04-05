@@ -10,7 +10,7 @@ from .hawkes_kernels import HawkesKernel0
 
 
 class SimuHawkes(SimuPointProcess):
-    """Class for simulation of Hawkes process
+    """Hawkes process simulation
     
     They are defined by the intensity:
     

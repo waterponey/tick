@@ -33,7 +33,7 @@ def _extended_discrete_xaxis(x_axis, n_points=100, eps=0.10):
 
 def plot_timefunction(time_function, labels=None, n_points=300, show=True,
                       ax=None):
-    """Quick plot of a `TimeFunction`
+    """Quick plot of a `tick.base.TimeFunction`
     
     Parameters
     ----------

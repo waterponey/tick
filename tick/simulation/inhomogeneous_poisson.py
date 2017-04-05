@@ -6,7 +6,7 @@ from .build.simulation import InhomogeneousPoisson as _InhomogeneousPoisson
 
 
 class SimuInhomogeneousPoisson(SimuPointProcess):
-    """Class of inhomogeneous Poisson process
+    """Inhomogeneous Poisson process simulation
 
     Parameters
     ----------
