@@ -1,3 +1,10 @@
+"""
+==============================
+Cox regression data simulation
+==============================
+
+Generates Cox Regression realization given a weight vector 
+"""
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,8 +19,10 @@ X, T, C = simu_coxreg.simulate()
 
 plt.figure(figsize=(6, 4))
 
-plt.scatter(*X[C == 0].T, c=T[C == 0], cmap='RdBu', marker="x", label="censoring")
-plt.scatter(*X[C == 1].T, c=T[C == 1], cmap='RdBu', marker="o", label="failure")
+plt.scatter(*X[C == 0].T, c=T[C == 0], cmap='RdBu', marker="x",
+            label="censoring")
+plt.scatter(*X[C == 1].T, c=T[C == 1], cmap='RdBu', marker="o",
+            label="failure")
 plt.colorbar()
 plt.legend(loc='upper left')
 plt.title('Cox regression', fontsize=16)

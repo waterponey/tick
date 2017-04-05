@@ -1,3 +1,12 @@
+"""
+========================================
+Inhomogeneous Poisson process simulation
+========================================
+
+This example show how to simulate any inhomogeneous Poisson process. Its 
+intensity is modeled through `tick.base.TimeFunction`
+"""
+
 import numpy as np
 from tick.base import TimeFunction
 

@@ -43,7 +43,7 @@ Here are functions for the simulation of model weights.
 
 **Example**
 
-.. plot:: modules/code_samples/plot_simulation_weights.py
+.. plot:: modules/code_samples/simulation/plot_simulation_weights.py
     :include-source:
 
 1.2 Simulation of a features matrix
@@ -127,7 +127,7 @@ Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})` 
 
 **Example**
 
-.. plot:: modules/code_samples/plot_simulation_linear_model.py
+.. plot:: ../examples/plot_simulation_linear_model.py
     :include-source:
 
 .. todo::
@@ -161,7 +161,7 @@ Cox regression with right-censoring  :class:`tick.simulation.SimuCoxReg`
 
 **Examples**
 
-.. plot:: modules/code_samples/plot_simulation_coxreg.py
+.. plot:: ../examples/plot_simulation_coxreg.py
     :include-source:
 
 
@@ -197,7 +197,7 @@ A Poisson process with constant intensity
 A Poisson process with variable intensity. In this case, the intensity is
 defined through a `tick.base.TimeFunction`
 
-.. plot:: modules/code_samples/simulation/plot_poisson_inhomogeneous.py
+.. plot:: ../examples/plot_poisson_inhomogeneous.py
     :include-source:
 
 4.2 Hawkes processes

@@ -1,3 +1,11 @@
+"""
+=============================
+Linear models data simulation
+=============================
+
+Generates Linear, Logistic and Poisson regression realizations given a 
+weight vector.
+"""
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,7 +26,6 @@ simu_poisreg = SimuPoisReg(weights0, intercept0, n_samples=n_samples,
                            link='exponential', seed=123)
 X_poisreg, y_poisreg = simu_poisreg.simulate()
 
-
 plt.figure(figsize=(12, 3))
 
 plt.subplot(1, 3, 1)
@@ -38,3 +45,4 @@ plt.colorbar()
 plt.title('Poisson', fontsize=16)
 
 plt.tight_layout()
+plt.show()

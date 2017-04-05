@@ -41,7 +41,7 @@ elastic-net penalization.
 Note that, we specify a ``range=(0, n_features)`` so that the intercept is not penalized
 (see :ref:`Prox classes <optim-prox>` below for more details).
 
-.. plot:: modules/code_samples/optim/plot_first_comparison.py
+.. plot:: modules/code_samples/optim/plot_optim_comparison.py
     :include-source:
 
 
@@ -403,7 +403,7 @@ Example
 -------
 Here is an illustration of the effect of these proximal operators on an example.
 
-.. plot:: modules/code_samples/optim/plot_prox_example.py
+.. plot:: ../examples/plot_prox_example.py
     :include-source:
 
 

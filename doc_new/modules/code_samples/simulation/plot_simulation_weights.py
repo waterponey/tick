@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 from tick.simulation import weights_sparse_exp, weights_sparse_gauss
 

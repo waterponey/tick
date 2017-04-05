@@ -7,7 +7,7 @@ s = 0.4
 prox = ProxMulti(
     proxs=(
         ProxTV(strength=s, range=(0, 20)),
-        ProxL1(strength=2*s, range=(20, 50))
+        ProxL1(strength=2 * s, range=(20, 50))
     )
 )
 

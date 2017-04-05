@@ -1,3 +1,11 @@
+"""
+==============================
+Examples of proximal operators
+==============================
+
+Plot examples of proximal operators available in `tick.optim.prox` 
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from tick.optim.prox import ProxL1, ProxElasticNet, ProxL2Sq, \
