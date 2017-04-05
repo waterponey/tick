@@ -223,7 +223,7 @@ Linear regression with intercepts  :math:`\ell(y, y') = \frac 12 (y - y')^2`  :c
 
 .. todo::
 
-    DESCRIPTION DU MODELE
+    Describe cox model
 
 =================================  ==============================
 Model                              Class

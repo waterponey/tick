@@ -132,7 +132,7 @@ Poisson regression (exponential link)  :math:`\text{Poisson}(e^{w^\top x + b})` 
 
 .. todo::
 
-    DONNER UN PEU PLUS DE DETAILS SUR LES OPTIONS DE CES CLASSES
+    Give more details on these classes abilities
 
 
 3. Survival analysis simulation
@@ -148,7 +148,7 @@ while :math:`c_i = 0` means that :math:`t_i` is a censoring time.
 
 .. todo::
 
-    DESCRIBE PRECISELY THE MODEL
+    Describe precisely cox model
 
 For now, the following class is available
 
