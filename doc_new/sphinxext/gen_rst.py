@@ -498,7 +498,7 @@ def generate_example_rst(app):
     # Note: The sidebar button has been removed from the examples page for now
     #      due to how it messes up the layout. Will be fixed at a later point
     fhindex.write("""\
-
+:orphan:
 
 
 .. raw:: html

@@ -295,15 +295,12 @@ html_theme_options = {
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Browse",
 
-    # A list of tuples containting pages to link to.  The value should
+    # A list of tuples containing pages to link to.  The value should
     # be in the form [(name, page), ..]
     'navbar_links': [
         ('Home', 'index'),
-        # ('API', 'api'),
-        # ('Inference', 'modules/inference'),
-        # ('Optimization', 'modules/optim'),
-        # ('Simulation', 'modules/simulation'),
-        # ('Development', 'modules/dev')
+        ('Examples', 'auto_examples/index'),
+        ('API', 'modules/api'),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

@@ -94,8 +94,6 @@
     :maxdepth: 2
     :hidden:
 
-    auto_examples/index
-    modules/api
     modules/inference
     modules/optim
     modules/plot
