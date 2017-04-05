@@ -170,7 +170,7 @@ In order to enable the linking we must specify:
 
 .. testsetup:: [cpp_setter]
 
-    from tick.base.utils.build.utils import A0 as _A
+    from tick.base.build.base import A0 as _A
 
 .. testcode:: [cpp_setter]
 
@@ -422,3 +422,230 @@ our prox will be modified, the `set_strength` method of the object stored in
 `_prox` attribute (as specified by `_cpp_obj_name` will be called with the
 new value passed as argument). This allow us to have strength values of
 Python and C++ that are always linked.
+
+Enable Python-pickling of C++ objects
+-------------------------------------
+
+In some cases we need our C++-wrapped objects to be picklable by Python. For
+instance, if we need to use the object as part of the Python `multiprocessing`
+library, or if we want to implement some stop/resume functionality.
+
+The way it has been done in a number of existing `tick` classes is by
+(de)serializing the object to and from string-types via the
+`Cereal <http://uscilab.github.io/cereal/>`_ library.
+
+In example:
+
+.. code-block:: cpp
+
+    #include <cereal/types/polymorphic.hpp>
+    #include <cereal/types/base_class.hpp>
+
+    class HawkesKernelSumExp : public HawkesKernel {
+     public:
+      ...
+
+      template <class Archive>
+      void serialize(Archive & ar) {
+        ar(cereal::make_nvp("HawkesKernel", cereal::base_class<HawkesKernel>(this)));
+
+        ar(CEREAL_NVP(use_fast_exp));
+        ar(CEREAL_NVP(n_decays));
+        ar(CEREAL_NVP(intensities));
+        ar(CEREAL_NVP(decays));
+        ar(CEREAL_NVP(last_convolution_time));
+        ar(CEREAL_NVP(last_convolution_values));
+        ar(CEREAL_NVP(convolution_restart_index));
+      }
+
+      ...
+    };
+
+We add the serialize method, and in the method body we specify which members of
+the class to put into the serialization archive. Note that members are wrapped
+with `CEREAL_NVP()`, which is a Cereal macro to add the value and *name* of a
+variable. The standard tick classes such as `ArrayDouble` can be added as
+archive members without additional effort (e.g. intensities and decays in the
+above example).
+
+In the example above we also add the values of the base class (in this case
+`HawkesKernel`). Here we manually specify the value name with
+`cereal::make_nvp`.
+
+This takes care of the C++-part of serialization. We add Pickle functionality
+directly in the SWIG interface file:
+
+.. code-block:: cpp
+
+    %{
+    #include "hawkes.h"
+    %}
+
+    %include serialization.i
+
+    class HawkesKernelSumExp : public HawkesKernel {
+     public:
+      ...
+
+      HawkesKernelSumExp();
+
+      ...
+    };
+
+    TICK_MAKE_PICKLABLE(HawkesKernelSumExp);
+
+A convenience macro `TICK_MAKE_PICKLABLE` is available to add all the necessary
+bits to a SWIG definition in order to make it picklable in Python.
+
+`TICK_MAKE_PICKLABLE` takes any number of arguments. The first being the class
+name of the class to be pickled. Any following arguments will be forwarded to
+the Python constructor of the class for initialization (used when
+unpickling/reconstructing an object). In the example above, no parameters are
+given to the constructor.
+
+The macro adds a block of Python code with a `__getstate__` method to return a
+serialized copy of the object, and a `__setstate__` method to reconstruct the
+object from a string value (this is where the initialization/constructor
+parameters play in).
+
+It's important to consider the initialization of the Python object. In some
+cases it might be convenient to add a parameter-less C++ constructor that
+initializes an empty object. Otherwise existing constructors should be used.
+
+Now that the Python class has methods to get/set the object state, the pickle
+module may work on the class.
+
+Splitting serialization and deserialization methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In some cases it's convenient to split the serialization method into two; one
+for loading (deserializing) and saving (serializing) an object. For example, if
+an archive member needs complex initialization during loading, it may be easier
+to have this done in a separate method.
+
+In Cereal, we can define load and save methods separately:
+
+.. code-block:: cpp
+
+    template <class Archive>
+    void save(Archive & ar) const {
+      ar(x);
+      ar(y);
+      ar(z.get_foo());
+    }
+
+    template <class Archive>
+    void load(Archive & ar) {
+      ar(x);
+      ar(y);
+
+      float temp = 0.0f;
+      ar(temp);
+
+      z = Z(temp);
+    }
+
+See `Cereal website <https://uscilab.github.io/cereal/serialization_functions
+.html>`_
+for more details.
+
+Serializing class hierarchies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When serializing a class that is part of a hierarchy, it's usually sufficient to
+add the base class as one of the archive members, as shown in the example:
+
+.. code-block:: cpp
+
+    template <class Archive>
+    void serialize(Archive & ar) {
+      ...
+      ar(cereal::make_nvp("HawkesKernel", cereal::base_class<HawkesKernel>(this)));
+      ...
+    }
+
+However, if some base class in the hierarchy defines split save/load methods,
+and a derived class defines a single serialize method (or vice versa), it may be
+necessary to inform Cereal which serialization method(s) to use. Cereal provides
+a macro to achieve this:
+
+.. code-block:: cpp
+
+    // Always use the single 'serialize' method when serializing the Hawkes class
+    CEREAL_SPECIALIZE_FOR_ALL_ARCHIVES(Hawkes, cereal::specialization::member_serialize)
+
+    // OR
+
+    // Always use the split 'load/save' methods when serializing the Hawkes class
+    CEREAL_SPECIALIZE_FOR_ALL_ARCHIVES(Hawkes, cereal::specialization::member_load_save)
+
+The macros need to be put after the definition of the classes, and in the global
+namespace (i.e. not in tick).
+
+Serializing smart pointers
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Serializing smart pointers such as `std::shared_ptr` or `std::unique_ptr` is supported
+by Cereal with a minimum of needed work.
+
+An archive member of a smart pointer type is tagged with additional information
+about the actual value type when serialized. For this to happen, Cereal needs to be
+informed of the available derived classes of the base class that is serialized.
+
+We do this in the following way:
+
+.. code-block:: cpp
+
+    CEREAL_REGISTER_TYPE(DerivedClass)
+
+With this macro in place, Cereal will be able to save and restore values with the
+correct polymorphic types. You can see more in the
+`Cereal documentation on polymorphic types <https://uscilab.github.io/cereal/polymorphism.html>`_.
+
+Tips for debugging C++ classes in tick
+--------------------------------------
+
+In the header file `debug.h` we have a number of macro definitions to aid in the development of the tick library.
+
+Debug output
+^^^^^^^^^^^^
+For the sake of convenience, `debug.h` defines `TICK_DEBUG()` and
+`TICK_WARNING()` to print messages to stdout or stderr respectively. They are
+both used as streaming interfaces:
+
+.. code-block:: cpp
+
+    ArrayDouble arr = f();
+
+    TICK_DEBUG() << "Printing an array to stdout: " << arr;
+    TICK_WARNING() << "Printing an array to stderr: " << arr;
+
+Most types that can be inserted into std::stringstream can also be inserted into
+these interfaces. Notice that `tick` arrays can also be inserted.
+
+Raising errors
+^^^^^^^^^^^^^^
+To generate errors there is an similar macro which will raise a C++ exception to
+be caught by Python. The interface is almost identical to `TICK_DEBUG()` and
+`TICK_WARNING()` except that the input must be placed within the parenthesis:
+
+.. code-block:: cpp
+
+    ArrayDouble arr = f();
+
+    TICK_ERROR("A fatal error occurred because of this array: " << arr);
+
+This will throw an exception which (if used via the Python interface) will be
+caught in the SWIG interface layer and raised as an error in Python.
+
+The exception thrown can include a backtrace to the point of error. For this to
+happen, the compilation of the library must include the DEBUG_VERBOSE flag
+(see `setup.py`).
+
+Deprecation
+^^^^^^^^^^^
+The library is under continuous development and occasionally some internal
+implementations will be phased out. To ease this process the macro
+`TICK_DEPRECATED` is useful to mark variables or definition as no-longer-fit to
+use. Code will still compile and link, but warnings will be generated:
+::
+
+    .../tick/deprecated.cpp: In member function ‘void f()’:
+    .../tick/deprecated.cpp:20:3: warning: ‘int some_method()’ is deprecated (declared at .../deprecated.cpp:10) [-Wdeprecated-declarations]
