@@ -11,19 +11,13 @@ class ProxMulti : public Prox {
     std::vector<ProxPtr> proxs;
 
  public:
-    explicit ProxMulti(std::vector<ProxPtr> proxs,
-                       double strength);
+    explicit ProxMulti(std::vector<ProxPtr> proxs);
 
     const std::string get_class_name() const override;
 
-    double value(const ArrayDouble &coeffs,
-                 ulong start,
-                 ulong end) override;
+    double value(const ArrayDouble &coeffs, ulong start, ulong end) override;
 
-    void call(const ArrayDouble &coeffs,
-              double step,
-              ArrayDouble &out,
-              ulong start,
+    void call(const ArrayDouble &coeffs, double step, ArrayDouble &out, ulong start,
               ulong end) override;
 };
 

@@ -7,6 +7,5 @@
 
 class ProxMulti : public Prox {
  public:
-   ProxMulti(std::vector<ProxPtr> proxs,
-             double strength);
+   ProxMulti(std::vector<ProxPtr> proxs);
 };

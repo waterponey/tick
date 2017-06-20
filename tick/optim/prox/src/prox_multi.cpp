@@ -1,12 +1,8 @@
 #include "prox_multi.h"
 
-ProxMulti::ProxMulti(std::vector<ProxPtr> proxs,
-                     double strength)
-    : Prox(strength, false), proxs(proxs) {
-    if (strength != 0) {
-        TICK_ERROR(get_class_name() << "ProxMulti can be instantiated"
-            " with strength=0 only, since ProxMulti's strength is not used");
-    }
+// ProxMulti can be instantiated with strength=0 only, since ProxMulti's strength is not used
+ProxMulti::ProxMulti(std::vector<ProxPtr> proxs)
+    : Prox(0, false), proxs(proxs) {
 }
 
 const std::string ProxMulti::get_class_name() const {
