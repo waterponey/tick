@@ -13,16 +13,11 @@ class ProxZero : public ProxSeparable {
 
     const std::string get_class_name() const override;
 
-    double call_single(double x,
-                       double step) const override;
+    double call_single(double x, double step) const override;
 
-    double call_single(double x,
-                       double step,
-                       ulong n_times) const override;
+    double call_single(double x, double step, ulong n_times) const override;
 
-    double value(const ArrayDouble &coeffs,
-                 ulong start,
-                 ulong end) override;
+    double value(const ArrayDouble &coeffs, ulong start, ulong end) override;
 };
 
 #endif  // TICK_OPTIM_PROX_SRC_PROX_ZERO_H_

@@ -16,31 +16,21 @@ class ProxSortedL1 : public Prox {
 
     virtual void compute_weights(void);
 
-    void prox_sorted_l1(const ArrayDouble &y,
-                        const ArrayDouble &strength,
+    void prox_sorted_l1(const ArrayDouble &y, const ArrayDouble &strength,
                         ArrayDouble &x) const;
 
  public:
-    ProxSortedL1(double strength,
-                 WeightsType weights_type,
+    ProxSortedL1(double strength, WeightsType weights_type,
                  bool positive);
 
-    ProxSortedL1(double strength,
-                 WeightsType weights_type,
-                 ulong start,
-                 ulong end,
-                 bool positive);
+    ProxSortedL1(double strength, WeightsType weights_type, ulong start,
+                 ulong end, bool positive);
 
     const std::string get_class_name() const override;
 
-    double value(const ArrayDouble &coeffs,
-                 ulong start,
-                 ulong end) override;
+    double value(const ArrayDouble &coeffs, ulong start, ulong end) override;
 
-    void call(const ArrayDouble &coeffs,
-              double t,
-              ArrayDouble &out,
-              ulong start,
+    void call(const ArrayDouble &coeffs, double t, ArrayDouble &out, ulong start,
               ulong end) override;
 
     inline WeightsType get_weights_type() const {
@@ -58,8 +48,7 @@ class ProxSortedL1 : public Prox {
 
     void set_strength(double strength) override;
 
-    void set_start_end(ulong start,
-                       ulong end) override;
+    void set_start_end(ulong start, ulong end) override;
 };
 
 #endif  // TICK_OPTIM_PROX_SRC_PROX_SORTED_L1_H_

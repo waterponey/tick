@@ -4,9 +4,8 @@ ProxElasticNet::ProxElasticNet(double strength,
                                double ratio,
                                bool positive)
     : ProxSeparable(strength, positive) {
-    if (ratio < 0 || ratio > 1) TICK_ERROR("Ratio should be in the [0, 1] interval");
     this->positive = positive;
-    this->ratio = ratio;
+    set_ratio(ratio);
 }
 
 ProxElasticNet::ProxElasticNet(double strength,
@@ -15,9 +14,8 @@ ProxElasticNet::ProxElasticNet(double strength,
                                ulong end,
                                bool positive)
     : ProxSeparable(strength, start, end, positive) {
-    if (ratio < 0 || ratio > 1) TICK_ERROR("Ratio should be in the [0, 1] interval");
     this->positive = positive;
-    this->ratio = ratio;
+    set_ratio(ratio);
 }
 
 const std::string ProxElasticNet::get_class_name() const {

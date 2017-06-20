@@ -8,15 +8,9 @@ class ProxElasticNet : public ProxSeparable {
     double ratio;
 
  public:
-    ProxElasticNet(double strength,
-                   double ratio,
-                   bool positive);
+    ProxElasticNet(double strength, double ratio, bool positive);
 
-    ProxElasticNet(double strength,
-                   double ratio,
-                   ulong start,
-                   ulong end,
-                   bool positive);
+    ProxElasticNet(double strength, double ratio, ulong start, ulong end, bool positive);
 
     const std::string get_class_name() const override;
 
