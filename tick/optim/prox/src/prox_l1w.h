@@ -24,19 +24,19 @@ class ProxL1w : public ProxSeparable {
 
     // For this prox we cannot only override double call(double, step) const,
     // since we need the weights...
-    void call(ulong i,
-              const ArrayDouble &coeffs,
-              double step,
-              ArrayDouble &out) const override;
+    void call_single(ulong i,
+                     const ArrayDouble &coeffs,
+                     double step,
+                     ArrayDouble &out) const override;
 
-    void call(ulong i,
-              const ArrayDouble &coeffs,
-              double step,
-              ArrayDouble &out,
-              ulong n_times) const override;
+    void call_single(ulong i,
+                     const ArrayDouble &coeffs,
+                     double step,
+                     ArrayDouble &out,
+                     ulong n_times) const override;
 
-    double value(ulong i,
-                 const ArrayDouble &coeffs) const override;
+    double value_single(ulong i,
+                        const ArrayDouble &coeffs) const override;
 
     void set_weights(SArrayDoublePtr weights) {
         this->weights = weights;

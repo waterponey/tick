@@ -20,9 +20,9 @@ class ProxElasticNet : public ProxSeparable {
 
     const std::string get_class_name() const override;
 
-    double call(double x, double step) const override;
+    double call_single(double x, double step) const override;
 
-    double value(double x) const override;
+    double value_single(double x) const override;
 
     virtual double get_ratio() const;
 

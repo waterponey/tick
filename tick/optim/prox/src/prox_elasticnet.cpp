@@ -24,8 +24,8 @@ const std::string ProxElasticNet::get_class_name() const {
     return "ProxElasticNet";
 }
 
-double ProxElasticNet::call(double x,
-                            double step) const {
+double ProxElasticNet::call_single(double x,
+                                   double step) const {
     double thresh = step * ratio * strength;
     if (x > 0) {
         if (x > thresh) {
@@ -48,7 +48,7 @@ double ProxElasticNet::call(double x,
     }
 }
 
-double ProxElasticNet::value(double x) const {
+double ProxElasticNet::value_single(double x) const {
     return (1 - ratio) * 0.5 * x * x + ratio * std::abs(x);
 }
 

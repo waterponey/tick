@@ -12,14 +12,14 @@ const std::string ProxZero::get_class_name() const {
     return "ProxZero";
 }
 
-double ProxZero::call(double x,
-                      double step) const {
+double ProxZero::call_single(double x,
+                             double step) const {
     return x;
 }
 
-double ProxZero::call(double x,
-                      double step,
-                      ulong n_times) const {
+double ProxZero::call_single(double x,
+                             double step,
+                             ulong n_times) const {
     return x;
 }
 

@@ -15,8 +15,8 @@ const std::string ProxL2Sq::get_class_name() const {
 }
 
 // Compute the prox on the i-th coordinate only
-double ProxL2Sq::call(double x,
-                      double step) const {
+double ProxL2Sq::call_single(double x,
+                             double step) const {
     if (positive && x < 0) {
         return 0;
     } else {
@@ -25,9 +25,9 @@ double ProxL2Sq::call(double x,
 }
 
 // Repeat n_times the prox on coordinate i
-double ProxL2Sq::call(double x,
-                      double step,
-                      ulong n_times) const {
+double ProxL2Sq::call_single(double x,
+                             double step,
+                             ulong n_times) const {
     if (n_times >= 1) {
         if (positive && x < 0) {
             return 0;
@@ -39,6 +39,6 @@ double ProxL2Sq::call(double x,
     }
 }
 
-double ProxL2Sq::value(double x) const {
+double ProxL2Sq::value_single(double x) const {
     return x * x / 2;
 }

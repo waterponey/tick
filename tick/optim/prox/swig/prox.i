@@ -16,10 +16,6 @@ class Prox {
                     double step,
                     ArrayDouble &out);
 
-  virtual void call(const ArrayDouble &coeffs,
-                    const ArrayDouble &step,
-                    ArrayDouble &out);
-
   virtual double value(const ArrayDouble &coeffs);
 
   virtual double get_strength() const;
@@ -30,8 +26,7 @@ class Prox {
 
   virtual ulong get_end() const final;
 
-  virtual void set_start_end(ulong start,
-                             ulong end);
+  virtual void set_start_end(ulong start, ulong end);
 
   virtual bool get_positive() const final;
 

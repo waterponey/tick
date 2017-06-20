@@ -20,10 +20,10 @@ const std::string ProxL1w::get_class_name() const {
     return "ProxL1w";
 }
 
-void ProxL1w::call(ulong i,
-                   const ArrayDouble &coeffs,
-                   double step,
-                   ArrayDouble &out) const {
+void ProxL1w::call_single(ulong i,
+                          const ArrayDouble &coeffs,
+                          double step,
+                          ArrayDouble &out) const {
     double thresh = step * strength;
     double coeffs_i = coeffs[i];
     double thresh_i = thresh * (*weights)[i];
@@ -47,19 +47,19 @@ void ProxL1w::call(ulong i,
     }
 }
 
-void ProxL1w::call(ulong i,
-                   const ArrayDouble &coeffs,
-                   double step,
-                   ArrayDouble &out,
-                   ulong n_times) const {
+void ProxL1w::call_single(ulong i,
+                          const ArrayDouble &coeffs,
+                          double step,
+                          ArrayDouble &out,
+                          ulong n_times) const {
     if (n_times >= 1) {
-        call(i, coeffs, n_times * step, out);
+        call_single(i, coeffs, n_times * step, out);
     } else {
         out[i] = coeffs[i];
     }
 }
 
-double ProxL1w::value(ulong i,
-                      const ArrayDouble &coeffs) const {
+double ProxL1w::value_single(ulong i,
+                             const ArrayDouble &coeffs) const {
     return (*weights)[i] * std::abs(coeffs[i]);
 }

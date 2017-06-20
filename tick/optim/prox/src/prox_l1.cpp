@@ -14,8 +14,8 @@ const std::string ProxL1::get_class_name() const {
     return "ProxL1";
 }
 
-double ProxL1::call(double x,
-                    double step) const {
+double ProxL1::call_single(double x,
+                           double step) const {
     double thresh = step * strength;
     if (x > 0) {
         if (x > thresh) {
@@ -38,16 +38,16 @@ double ProxL1::call(double x,
     }
 }
 
-double ProxL1::call(double x,
-                    double step,
-                    ulong n_times) const {
+double ProxL1::call_single(double x,
+                           double step,
+                           ulong n_times) const {
     if (n_times >= 1) {
-        return call(x, n_times * step);
+        return call_single(x, n_times * step);
     } else {
         return x;
     }
 }
 
-double ProxL1::value(double x) const {
+double ProxL1::value_single(double x) const {
     return std::abs(x);
 }

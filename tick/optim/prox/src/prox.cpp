@@ -42,59 +42,10 @@ void Prox::call(const ArrayDouble &coeffs,
 }
 
 void Prox::call(const ArrayDouble &coeffs,
-                const ArrayDouble &step,
-                ArrayDouble &out) {
-    // This is overloaded in ProxSeparable.
-    // If the child class does not inherit from ProxSeparable,
-    // it cannot use this method.
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-void Prox::call(const ArrayDouble &coeffs,
                 double step,
                 ArrayDouble &out,
                 ulong start,
                 ulong end) {
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-void Prox::call(const ArrayDouble &coeffs,
-                const ArrayDouble &step,
-                ArrayDouble &out,
-                ulong start,
-                ulong end) {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-double Prox::call(double x,
-                  double step) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-double Prox::call(double x,
-                  double step,
-                  ulong n_times) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-void Prox::call(ulong i,
-                const ArrayDouble &coeffs,
-                double step,
-                ArrayDouble &out) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-void Prox::call(ulong i,
-                const ArrayDouble &coeffs,
-                double step,
-                ArrayDouble &out,
-                ulong n_times) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -115,19 +66,6 @@ double Prox::value(const ArrayDouble &coeffs) {
 double Prox::value(const ArrayDouble &coeffs,
                    ulong start,
                    ulong end) {
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-double Prox::value(double x) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
-    TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
-}
-
-// Compute the value given by the i-th coordinate only (multiplication by
-// lambda must not be done here)
-double Prox::value(ulong i,
-                   const ArrayDouble &coeffs) const {
-    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 

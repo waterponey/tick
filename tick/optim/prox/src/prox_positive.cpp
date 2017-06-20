@@ -12,8 +12,8 @@ const std::string ProxPositive::get_class_name() const {
     return "ProxPositive";
 }
 
-double ProxPositive::call(double x,
-                          double step) const {
+double ProxPositive::call_single(double x,
+                                 double step) const {
     if (x < 0) {
         return 0;
     } else {
@@ -21,10 +21,10 @@ double ProxPositive::call(double x,
     }
 }
 
-double ProxPositive::call(double x,
-                          double step,
-                          ulong n_times) const {
-    return call(x, step);
+double ProxPositive::call_single(double x,
+                                 double step,
+                                 ulong n_times) const {
+    return call_single(x, step);
 }
 
 double ProxPositive::value(const ArrayDouble &coeffs,
