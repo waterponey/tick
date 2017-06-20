@@ -34,6 +34,8 @@ void Prox::call(const ArrayDouble &coeffs,
         // If no range is given, we use the size of coeffs to get it
         set_start_end(0, coeffs.size());
         // But no range was given (set_start_end set has_range to true)
+        // Still it is mandatory to set `start` and `end` has some prox might need to know if
+        // they have changed from one iteration to another (see ProxSortedL1)
         has_range = false;
     }
     call(coeffs, step, out, start, end);
@@ -45,8 +47,7 @@ void Prox::call(const ArrayDouble &coeffs,
     // This is overloaded in ProxSeparable.
     // If the child class does not inherit from ProxSeparable,
     // it cannot use this method.
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -63,23 +64,20 @@ void Prox::call(const ArrayDouble &coeffs,
                 ArrayDouble &out,
                 ulong start,
                 ulong end) {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
 double Prox::call(double x,
                   double step) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
 double Prox::call(double x,
                   double step,
                   ulong n_times) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -87,8 +85,7 @@ void Prox::call(ulong i,
                 const ArrayDouble &coeffs,
                 double step,
                 ArrayDouble &out) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -97,19 +94,15 @@ void Prox::call(ulong i,
                 double step,
                 ArrayDouble &out,
                 ulong n_times) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
 double Prox::value(const ArrayDouble &coeffs) {
     if (has_range) {
-        if (end > coeffs.size()) {
-            TICK_ERROR(get_class_name() << " of range [" << start
-                                        << ", " << end
-                                        << "] cannot get value of a vector of size "
-                                        << coeffs.size());
-        }
+        if (end > coeffs.size()) TICK_ERROR(
+            get_class_name() << " of range [" << start << ", " << end
+                             << "] cannot get value of a vector of size " << coeffs.size());
     } else {
         // If no range is given, we use the size of coeffs to get it
         set_start_end(0, coeffs.size());
@@ -126,8 +119,7 @@ double Prox::value(const ArrayDouble &coeffs,
 }
 
 double Prox::value(double x) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -135,8 +127,7 @@ double Prox::value(double x) const {
 // lambda must not be done here)
 double Prox::value(ulong i,
                    const ArrayDouble &coeffs) const {
-    TICK_WARNING() << "Method not implemented since this prox "
-        "is not separable.";
+    TICK_WARNING() << "Method not implemented since this prox is not separable.";
     TICK_CLASS_DOES_NOT_IMPLEMENT(get_class_name());
 }
 
@@ -150,11 +141,9 @@ void Prox::set_strength(double strength) {
 
 void Prox::set_start_end(ulong start,
                          ulong end) {
-    if (start >= end) {
-        TICK_ERROR(get_class_name() << " can't have start("
-                                    << start << ") greater or equal than end("
-                                    << end << ")");
-    }
+    if (start >= end) TICK_ERROR(
+            get_class_name() << " can't have start(" << start
+                             << ") greater or equal than end(" << end << ")");
     this->has_range = true;
     this->start = start;
     this->end = end;

@@ -29,54 +29,73 @@ class Prox {
 
     virtual const bool is_separable() const;
 
+    //! @brief call prox on coeffs, with a given step and store result in out
     virtual void call(const ArrayDouble &coeffs, double step, ArrayDouble &out);
 
+    // TODO: remove and implement it only in prox separable?
+    //! @brief call prox on coeffs, with a vector of different steps and store result in out
     virtual void call(const ArrayDouble &coeffs,
                       const ArrayDouble &step,
                       ArrayDouble &out);
 
+    //! @brief call prox on a part of coeffs (defined by start-end), with a given step and
+    //! store result in out
     virtual void call(const ArrayDouble &coeffs,
                       double step,
                       ArrayDouble &out,
                       ulong start,
                       ulong end);
 
+    // TODO: remove and implement it only in prox separable?
+    //! @brief call prox on a part of coeffs (defined by start-end), with a vector of different
+    //! steps and store result in out
     virtual void call(const ArrayDouble &coeffs,
                       const ArrayDouble &step,
                       ArrayDouble &out,
                       ulong start,
                       ulong end);
 
+    // TODO: remove and implement it only in prox separable?
+    //! @brief apply prox on a single value
     virtual double call(double x,
                         double step) const;
 
+    // TODO: remove and implement it only in prox separable?
+    //! @brief apply prox on a single value several times
     virtual double call(double x,
                         double step,
                         ulong n_times) const;
 
-    // Compute the prox on the i-th coordinate only
+    // TODO: remove and implement it only in prox separable?
+    //! @brief apply prox on a single value defined by coordinate i
     virtual void call(ulong i,
                       const ArrayDouble &coeffs,
                       double step,
                       ArrayDouble &out) const;
 
-    // Repeat n_times the prox on coordinate i
+    //! @brief apply prox on a single value defined by coordinate i several times
     virtual void call(ulong i,
                       const ArrayDouble &coeffs,
                       double step,
                       ArrayDouble &out,
                       ulong n_times) const;
 
+    //! @brief get penalization value of the prox on the coeffs vector.
+    //! This takes strength into account
     virtual double value(const ArrayDouble &coeffs);
 
+    //! @brief get penalization value of the prox on a part of coeffs (defined by start-end).
+    //! This takes strength into account
     virtual double value(const ArrayDouble &coeffs,
                          ulong start,
                          ulong end);
 
+    //! @brief get penalization value of the prox on a single value
+    //! @warning This does not take strength into account
     virtual double value(double x) const;
 
-    // Compute the value given by the i-th coordinate only (multiplication by
-    // lambda must not be done here)
+    //! @brief get penalization value of the prox on a single value defined by coordinate i
+    //! @warning This does not take strength into account
     virtual double value(ulong i,
                          const ArrayDouble &coeffs) const;
 
