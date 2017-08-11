@@ -25,12 +25,42 @@ variance_reduction_methods_mapper = {
 
 class SVRG(SolverFirstOrderSto):
     """
-    Stochastic variance reduced gradient
+    Stochastic Variance Reduced Gradient for the minimization of objectives of
+    the form
+
+    .. math::
+        \\frac 1n \\sum_{i=1}^n f_i(w) + g(w),
+
+    where the functions :math:`f_i` have smooth gradients and :math:`g` is
+    prox-capable. Function :math:`f = \\frac 1n \\sum_{i=1}^n f_i` corresponds to the
+    ``model.loss`` function of the model passed with ``set_model`` and
+    :math:`g` corresponds to the ``prox.value`` function of the prox passed
+    with the ``set_prox`` method.
+    One iteration of ``SVRG`` corresponds to the following iteration applied
+    ``epoch_size`` times:
+
+    .. math::
+        w \\gets \\mathrm{prox}_{\\eta g} \\big(w - \\eta (\\nabla f_i(w) -
+        \\nabla f_i(\\bar{w}) + \\nabla f(\\bar{w}) \\big)
+
+    where :math:`i` is sampled at random (strategy depends on ``rand_type``) at
+    each iteration, and where :math:`\\bar w` and :math:`\\nabla f(\\bar w)`
+    are updated at the beginning of each epoch, with a strategy that depend on
+    the ``variance_reduction`` parameter. The step-size :math:`\\eta` can be
+    tuned with ``step``, the seed of the random number generator for generation
+    of samples :math:`i` can be seeded with ``seed``. The iterations stop
+    whenever tolerance ``tol`` is achieved, or ``max_iter`` epochs (namely
+    ``tol``:math:`\\times` ``epoch_size``) have been made.
+    The obtained solution :math:`w` is returned by the ``solve`` method, and is
+    also stored in the ``solution`` attribute of the solver.
 
     Parameters
     ----------
     step : `float`
-        BLABLA
+        Step-size parameter, the most important parameter of the solver.
+        Whenever possible, this can be automatically tuned as
+        ``step = 1 / model.get_lip_max()``. Otherwise, use a try-an-improve
+        approach
 
     epoch_size : `int`, default given by model
         Epoch size, namely how many iterations are made before updating the
@@ -100,6 +130,13 @@ class SVRG(SolverFirstOrderSto):
 
     history : `dict`-like
         BLABLA
+
+    References
+    ----------
+    * Blabla
+    * Blabla
+
+
     """
 
     def __init__(self, step: float = None, epoch_size: int = None,
