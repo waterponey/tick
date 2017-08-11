@@ -14,44 +14,59 @@ variance_reduction_methods_mapper = {
 }
 
 
+# TODO: get_history doc
+
+# TODO: objective doc
+
+# TODO: set_model, set_prox doc
+
+# TODO: solve
+
+
 class SVRG(SolverFirstOrderSto):
     """
     Stochastic variance reduced gradient
 
     Parameters
     ----------
-    epoch_size : `int`
-        Epoch size
+    step : `float`
+        BLABLA
 
-    rand_type : `str`
-        Type of random sampling
+    epoch_size : `int`, default given by model
+        Epoch size, namely how many iterations are made before updating the
+        variance reducing term. By default, this is automatically tuned using
+        information from the model object passed through ``set_model``
 
-        * if ``"unif"`` samples are uniformly drawn among all possibilities
-        * if ``"perm"`` a random permutation of all possibilities is
+    rand_type : {'unif', 'perm'}, default='unif'
+        How samples are randomly selected from the data
+
+        * if ``'unif'`` samples are uniformly drawn among all possibilities
+        * if ``'perm'`` a random permutation of all possibilities is
           generated and samples are sequentially taken from it. Once all of
           them have been taken, a new random permutation is generated
 
-    tol : `float`, default=0
+    tol : `float`, default=1e-10
         The tolerance of the solver (iterations stop when the stopping
-        criterion is below it). By default the solver does ``max_iter``
-        iterations
+        criterion is below it)
 
-    max_iter : `int`
-        Maximum number of iterations of the solver
+    max_iter : `int`, default=100
+        Maximum number of iterations of the solver, namely maximum number of
+        epochs (by default full pass over the data, unless ``epoch_size`` has
+        been modified from default)
 
     verbose : `bool`, default=True
-        If `True`, we verbose things, otherwise the solver does not
-        print anything (but records information in history anyway)
+        If `True`, solver verboses history, otherwise nothing is displayed,
+        but history is recorded anyway
 
-    print_every : `int`, default = 10
+    print_every : `int`, default=1
         Print history information every time the iteration number is a
-        multiple of ``print_every``
+        multiple of ``print_every``. Used only is ``verbose`` is True
 
-    record_every : `int`, default = 1
-        Information along iteration is recorded in history each time the
-        iteration number of a multiple of ``record_every``
+    record_every : `int`, default=1
+        Save history information every time the iteration number is a
+        multiple of ``record_every``
 
-    variance_reduction : {'last', 'avg', 'rand'}, default = last
+    variance_reduction : {'last', 'avg', 'rand'}, default='last'
         Determine what is used as phase iterate for variance reduction.
 
         * 'last' : the phase iterate is the last iterate of the previous epoch
@@ -59,19 +74,38 @@ class SVRG(SolverFirstOrderSto):
           epoch
         * 'rand': the phase iterate is a random iterate of the previous epoch
 
+    seed : `int`, default=-1
+        BLABLA
+
     Attributes
     ----------
     model : `Solver`
-        The model to solve
+        The model used by the solver, passed with the ``set_model`` method
 
     prox : `Prox`
-        Proximal operator to solve
+        Proximal operator used by the solver, passed with the ``set_prox``
+        method
+
+    solution : `numpy.array`, shape=(n_coeffs,)
+        BLABLA
+
+    time_elapsed : `float`
+        BLABLA
+
+    time_end : `str`
+        BLABLA
+
+    time_start : `str`
+        BLABLA
+
+    history : `dict`-like
+        BLABLA
     """
 
     def __init__(self, step: float = None, epoch_size: int = None,
-                 rand_type: str = "unif", tol: float = 0.,
+                 rand_type: str = "unif", tol: float = 1e-10,
                  max_iter: int = 100, verbose: bool = True,
-                 print_every: int = 10, record_every: int = 1,
+                 print_every: int = 1, record_every: int = 1,
                  seed: int = -1, variance_reduction: str = "last"):
 
         SolverFirstOrderSto.__init__(self, step, epoch_size, rand_type,
